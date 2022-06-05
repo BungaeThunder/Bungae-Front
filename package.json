@@ -1,0 +1,39 @@
+{
+  "name": "bungae",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "type-check": "tsc",
+    "cz": "exec < /dev/tty && npx cz --hook || true"
+  },
+  "dependencies": {
+    "next": "12.1.6",
+    "react": "18.1.0",
+    "react-dom": "18.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "17.0.40",
+    "@types/react": "18.0.11",
+    "@types/react-dom": "18.0.5",
+    "cz-conventional-changelog": "3.3.0",
+    "eslint": "8.17.0",
+    "eslint-config-next": "12.1.6",
+    "husky": "8.0.1",
+    "pre-commit": "^1.2.2",
+    "typescript": "4.7.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "pre-commit": [
+    "lint",
+    "type-check",
+    "cz"
+  ]
+}
