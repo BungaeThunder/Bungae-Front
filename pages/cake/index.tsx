@@ -3,6 +3,7 @@ import Image from 'next/image';
 
 // TODO: 절대경로로 바꾸기
 import { AddLetterButton } from '../../component/cake/AddLetterButton';
+import { DdayCount } from '../../component/cake/DdayCount';
 import styles from '../../styles/Cake.module.css';
 
 const Cake: NextPage = () => {
@@ -15,6 +16,9 @@ const Cake: NextPage = () => {
 				</div>
 				<div className={styles.button}>
 					<AddLetterButton isArticle={isArticle} />
+				</div>
+				<div className={styles.dday}>
+					<DdayCount Birthday="2022-08-09"></DdayCount>
 				</div>
 			</main>
 		</div>
