@@ -14,11 +14,37 @@ const Cake: NextPage = () => {
 		<div className={styles.container}>
 			<main className={styles.main}>
 				<div className={styles.dday}>
-					<div>Today: {now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate()}</div>
-					<div>Bday: {bday.getFullYear() + '-' + (bday.getMonth() + 1) + '-' + bday.getDate()}</div>
+					<div>
+						Today:{' '}
+						{now.getFullYear() +
+							'-' +
+							(now.getMonth() + 1) +
+							'-' +
+							now.getDate()}
+					</div>
+					<div>
+						Bday:{' '}
+						{bday.getFullYear() +
+							'-' +
+							(bday.getMonth() + 1) +
+							'-' +
+							bday.getDate()}
+					</div>
 					<DdayCount
-						Birthday={bday.getFullYear() + '-' + (bday.getMonth() + 1) + '-' + bday.getDate()}
-						Today={now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate()}
+						Birthday={
+							bday.getFullYear() +
+							'-' +
+							(bday.getMonth() + 1) +
+							'-' +
+							bday.getDate()
+						}
+						Today={
+							now.getFullYear() +
+							'-' +
+							(now.getMonth() + 1) +
+							'-' +
+							now.getDate()
+						}
 					></DdayCount>
 				</div>
 				<div className={styles.cake}>
