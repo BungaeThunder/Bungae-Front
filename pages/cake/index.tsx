@@ -1,5 +1,6 @@
 import type { NextPage } from 'next';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
 // TODO: 절대경로로 바꾸기
 import { AddLetterButton } from '../../component/cake/AddLetterButton';
@@ -10,7 +11,13 @@ const bday = new Date('2022-12-25');
 
 const Cake: NextPage = () => {
   const isArticle = true;
-  return (
+  const [isSSR, setIsSSR] = useState(true);
+
+  useEffect(() => {
+    setIsSSR(false);
+  }, []);
+
+  return !isSSR ? (
     <div>
       <main>
         <div>
@@ -28,6 +35,11 @@ const Cake: NextPage = () => {
           <AddLetterButton isArticle={isArticle} />
         </div>
       </main>
+    </div>
+  ) : (
+    // TODO: add loading page
+    <div>
+      <p>loading</p>
     </div>
   );
 };
