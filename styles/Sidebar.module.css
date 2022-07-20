@@ -1,0 +1,38 @@
+.close {
+  width: 150px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: -150px;
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+  -webkit-transition: 0.3s ease all;
+  transition: 0.3s ease all;
+  background: red;
+  z-index: 100;
+}
+.open {
+  width: 150px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: -150px;
+  -webkit-transform: translateX(-150px);
+  transform: translateX(-150px);
+  -webkit-transition: 0.3s ease all;
+  transition: 0.3s ease all;
+  background: yellowgreen;
+  z-index: 100;
+}
+.content {
+  background: blueviolet;
+}
+.openButton {
+  top: 10px;
+  right: 10px;
+  position: absolute;
+}
+.closeButton {
+  margin-top: 10px;
+  margin-left: 10px;
+}

@@ -4,6 +4,7 @@ import Image from 'next/image';
 // TODO: 절대경로로 바꾸기
 import { AddLetterButton } from '../../component/cake/AddLetterButton';
 import { DdayCount } from '../../component/cake/DdayCount';
+import { Sidebar } from '../../component/common/Sidebar';
 import styles from '../../styles/Cake.module.css';
 const now = new Date();
 const bday = new Date('2022-12-25');
@@ -12,6 +13,7 @@ const Cake: NextPage = () => {
   const isArticle = true;
   return (
     <div className={styles.container}>
+      <Sidebar></Sidebar>
       <main className={styles.main}>
         <div className={styles.dday}>
           <div>Today: {now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate()}</div>
