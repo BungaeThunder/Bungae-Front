@@ -1,7 +1,7 @@
 import { useReducer } from 'react';
 import styles from '../../styles/sidebar.module.css';
 
-function toggleMenu(isMenuOpen) {
+function toggleMenu(isMenuOpen: boolean) {
   return !isMenuOpen;
 }
 
