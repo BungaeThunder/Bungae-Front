@@ -1,46 +1,42 @@
-import { useEffect, useReducer, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 
-function toggleMenu(isMenuOpen: boolean) {
-  console.log('TOGGLE:' + isMenuOpen + '->' + !isMenuOpen);
-  return !isMenuOpen;
-}
-
 export const Sidebar = () => {
-  const [isMenuOpen, dispatch] = useReducer(toggleMenu, false);
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   const imgPath = '/images/button/sidebar-button.png';
 
   const side = useRef<HTMLInputElement>(null);
+  const sideBtn = useRef<HTMLInputElement>(null);
 
   const handleClose = e => {
-    const sideArea = side.current;
-    const sideChildren = side.current.contains(e.target);
+    const sideChildren = side.current?.contains(e.target);
+    const sideBtnChildren = sideBtn.current?.contains(e.target);
 
-    console.log(isMenuOpen);
-    if (isMenuOpen && (!sideArea || !sideChildren)) {
-      console.log('ho');
-      toggleMenu(isMenuOpen);
+    if ((!sideChildren) && isMenuOpen) {
+      setIsMenuOpen(false);
     }
+
+    !!sideBtnChildren && setIsMenuOpen(true)
   };
 
   useEffect(() => {
-    window.addEventListener('click', handleClose);
+    isMenuOpen && window.addEventListener('click', handleClose);
     return () => {
       window.removeEventListener('click', handleClose);
     };
-  });
+  }, [isMenuOpen]);
 
   return (
     <div>
-      <Button onClick={() => dispatch()}>
+      <Button ref={sideBtn} onClick={() => setIsMenuOpen(true)}>
         <Image src={imgPath} alt="sidebar button" width={40} height={40} />
       </Button>
       <Container ref={side} isMenuOpen={isMenuOpen}>
         <Top>
           <p>Hello, Lenini</p>
-          <Button onClick={() => dispatch()}>
+          <Button onClick={() => setIsMenuOpen(false)}>
             <Image src={imgPath} alt="sidebar button" width={40} height={40} />
           </Button>
         </Top>
