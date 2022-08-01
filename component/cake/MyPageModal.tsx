@@ -10,6 +10,8 @@ type IMyPageModalProps = {
 };
 
 export const MyPageModal: React.FC<IMyPageModalProps> = ({isModalOpen}) => {
+  const imgPath = "/images/profile_img.png"
+
 	return (
     <Modal
       isOpen={isModalOpen}
@@ -25,6 +27,10 @@ export const MyPageModal: React.FC<IMyPageModalProps> = ({isModalOpen}) => {
     >
       <Title>My Page</Title>
       <TitleLine />
+      {/* TODO: make component */}
+      <ProfileCircle>
+        <ProfileImage src={imgPath} />
+      </ProfileCircle>
     </Modal>
 	);
 };
@@ -46,6 +52,24 @@ const TitleLine = styled(Line)`
   justify-content: center;
   align-items: center;
   margint-top: 10px;
+`
+
+const ProfileCircle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #C5A2FE;
+  width: 78px;
+  height: 78px; 
+  border-radius: 70%;
+  overflow: hidden;
+  margin-top: 34px;
+`
+
+const ProfileImage = styled.img`
+  width: 45px;
+  height: 45px;
+  object-fit: cover;
 `
 
 const ModalStyle = styled.div`
