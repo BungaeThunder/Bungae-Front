@@ -5,20 +5,20 @@ import Image from 'next/image';
 export const Sidebar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
-  const imgPath = '/images/button/sidebar-button.png';
+  const imgPath = '/images/button/sidebar-button.svg';
 
   const side = useRef<HTMLInputElement>(null);
   const sideBtn = useRef<HTMLInputElement>(null);
 
-  const handleClose = e => {
-    const sideChildren = side.current?.contains(e.target);
-    const sideBtnChildren = sideBtn.current?.contains(e.target);
+  const handleClose = event => {
+    const sideChildren = side.current?.contains(event.target);
+    const sideBtnChildren = sideBtn.current?.contains(event.target);
 
-    if ((!sideChildren) && isMenuOpen) {
+    if (!sideChildren && isMenuOpen) {
       setIsMenuOpen(false);
     }
 
-    !!sideBtnChildren && setIsMenuOpen(true)
+    !!sideBtnChildren && setIsMenuOpen(true);
   };
 
   useEffect(() => {
@@ -26,19 +26,16 @@ export const Sidebar = () => {
     return () => {
       window.removeEventListener('click', handleClose);
     };
-  }, [isMenuOpen]);
+  });
 
   return (
     <div>
       <Button ref={sideBtn} onClick={() => setIsMenuOpen(true)}>
-        <Image src={imgPath} alt="sidebar button" width={40} height={40} />
+        <Image src={imgPath} alt="sidebar button" width={55} height={55} />
       </Button>
       <Container ref={side} isMenuOpen={isMenuOpen}>
         <Top>
           <p>Hello, Lenini</p>
-          <Button onClick={() => setIsMenuOpen(false)}>
-            <Image src={imgPath} alt="sidebar button" width={40} height={40} />
-          </Button>
         </Top>
         <div>
           <p>내 케이크 보기</p>
@@ -68,13 +65,13 @@ export const Sidebar = () => {
 };
 
 const Container = styled.div<{ isMenuOpen: boolean }>`
-  width: 200px;
-  height: 100%;
   position: absolute;
+  width: 330px;
+  height: 100%;
   top: 0;
-  right: -200px;
-  -webkit-transform: ${props => (props.isMenuOpen ? 'translateX(-200px)' : 'translateX(0)')};
-  transform: ${props => (props.isMenuOpen ? 'translateX(-200px)' : 'translateX(0)')};
+  right: -330px;
+  -webkit-transform: ${props => (props.isMenuOpen ? 'translateX(-330px)' : 'translateX(0)')};
+  transform: ${props => (props.isMenuOpen ? 'translateX(-330px)' : 'translateX(0)')};
   -webkit-transition: 0.3s ease all;
   transition: 0.3s ease all;
   background: ${props => (props.isMenuOpen ? 'yellowgreen' : 'red')};
@@ -87,10 +84,10 @@ const Top = styled.div`
   height: 60px;
 `;
 
-const Button = styled.span`
-  top: 10px;
-  right: 10px;
-  position: absolute;
+const Button = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+  margin-top: 55px;
 `;
 
 const Content = styled.div`
