@@ -14,7 +14,7 @@ export const AddLetterButton: React.FC<IAddLetterButtonProps> = ({ beforeBday })
       <RoundButton
         IconSrc="/icons/list.svg"
         IconSize={40}
-        IconColor={pallette.gray}
+        IconColor={pallette.yellow}
         IsActive={!beforeBday}
       ></RoundButton>
       <RoundButton
