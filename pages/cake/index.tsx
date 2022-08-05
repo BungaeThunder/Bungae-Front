@@ -20,7 +20,7 @@ const Cake: NextPage = () => {
 
   return !isSSR ? (
     <div>
-      <Sidebar></Sidebar>
+      <Sidebar />
       <main>
         <div>
           <div>Today: {now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate()}</div>
