@@ -23,19 +23,19 @@ const SignIn: NextPage = () => {
       <CakeIcon icon="noto-v1:birthday-cake" />
       <MainText>Create your cakey by:</MainText>
       <StyledButton>
-        <RegisterWithKakaoIcon />
+        <RegisterWithNaverIcon />
       </StyledButton>
       <StyledButton>
-        <RegisterWithNaverIcon />
+        <RegisterWithKakaoIcon />
       </StyledButton>
       <MainText>
         or... <br /> Already have an account?
       </MainText>
       <StyledButton>
-        <LoginWithKakaoIcon />
+        <LoginWithNaverIcon />
       </StyledButton>
       <StyledButton>
-        <LoginWithNaverIcon />
+        <LoginWithKakaoIcon />
       </StyledButton>
     </TopDiv>
   ) : (
