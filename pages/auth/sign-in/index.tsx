@@ -20,7 +20,7 @@ const SignIn: NextPage = () => {
       <MainTextColored>
         Light on your cakey <br /> with letters from dears
       </MainTextColored>
-      <CakeIcon icon="noto-v1:birthday-cake" color="#f8f8f8" />
+      <CakeIcon icon="noto-v1:birthday-cake" />
       <MainText>Create your cakey by:</MainText>
       <StyledButton>
         <RegisterWithKakaoIcon />
