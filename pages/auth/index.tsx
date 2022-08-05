@@ -1,10 +1,10 @@
 import type { NextPage } from 'next';
 
 import styled from 'styled-components';
-import LoginWithKakaoIcon from 'public/images/sign-in/login_with_kakao_account.svg';
-import LoginWithNaverIcon from 'public/images/sign-in/login_with_naver_account.svg';
-import RegisterWithKakaoIcon from 'public/images/sign-in/register_with_kakao_account.svg';
-import RegisterWithNaverIcon from 'public/images/sign-in/register_with_naver_account.svg';
+import LoginWithKakaoIcon from 'public/images/auth/login_with_kakao_account.svg';
+import LoginWithNaverIcon from 'public/images/auth/login_with_naver_account.svg';
+import RegisterWithKakaoIcon from 'public/images/auth/register_with_kakao_account.svg';
+import RegisterWithNaverIcon from 'public/images/auth/register_with_naver_account.svg';
 import { useEffect, useState } from 'react';
 import { Icon } from '@iconify/react';
 

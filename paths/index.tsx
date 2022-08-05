@@ -1,7 +1,7 @@
 const PathEnum = {
   API_URL: 'http://13.125.213.173:8080',
   SIGN_IN: {
-    pathname: '/auth/sign-in',
+    pathname: '/auth',
   },
   CAKE: {
     pathname: '/cake',
