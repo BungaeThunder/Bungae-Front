@@ -6,10 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint 'pages/**/*.{ts,tsx}'",
-    "lint:fix": "eslint --fix 'pages/**/*.{ts,tsx}'",
+    "lint": "eslint --cache \"./**/*.{js,jsx,json,ts,tsx}\"",
+    "lint:fix": "eslint --cache --fix \"./**/*.{js,jsx,json,ts,tsx}\"",
     "type-check": "tsc --noEmit",
-    "prettier": "prettier --write 'pages/**/*.{ts,tsx}'",
+    "prettier": "prettier --write \"./**/*.{js,jsx,json,ts,tsx}\"",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -48,9 +48,12 @@
     }
   },
   "lint-staged": {
-    "pages/**/*.{js,jsx,json,ts,tsx}": [
-      "npm run lint:fix",
-      "npm run prettier"
+    "**/*.{js,jsx,ts,tsx}": [
+      "eslint --cache --fix",
+      "prettier --write"
+    ],
+    "**/*.{md,json}": [
+      "prettier --write"
     ]
   }
 }
