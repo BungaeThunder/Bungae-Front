@@ -55,7 +55,7 @@ const Cake: NextPage = () => {
   ) : (
     // TODO: add loading page
     <div>
-      <p>loading</p>
+      <p>loading...</p>
     </div>
   );
 };
