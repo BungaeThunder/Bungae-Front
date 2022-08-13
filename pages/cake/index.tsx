@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 // TODO: 절대경로로 바꾸기
 import { AddLetterButton } from '../../component/cake/AddLetterButton';
 import { DdayCount } from '../../component/cake/DdayCount';
+import { Sidebar } from '../../component/common/Sidebar';
 
 const now = new Date();
 const bday = new Date('2022-12-25');
@@ -19,6 +20,7 @@ const Cake: NextPage = () => {
 
   return !isSSR ? (
     <div>
+      <Sidebar />
       <main>
         <div>
           <div>Today: {now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate()}</div>
