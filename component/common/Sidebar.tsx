@@ -1,28 +1,27 @@
 import { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
-import Image from 'next/image';
+import SidebarIcon from 'public/images/button/sidebar-button.svg';
 
 export const Sidebar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-
-  const imgPath = '/images/button/sidebar-button.svg';
+  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
 
   const side = useRef<HTMLInputElement>(null);
   const sideBtn = useRef<HTMLInputElement>(null);
 
-  const handleClose = event => {
-    const sideChildren = side.current?.contains(event.target);
-    const sideBtnChildren = sideBtn.current?.contains(event.target);
+  const handleClose = (event: MouseEvent) => {
+    const target = event.target as HTMLButtonElement;
+    const sideChildren = side.current?.contains(target);
+    const sideBtnChildren = sideBtn.current?.firstChild?.contains(target);
 
-    if (!sideChildren && isMenuOpen) {
-      setIsMenuOpen(false);
-    }
+    // 사이드바 열린 상태에서 사이드바 버튼 외부영역을 누르면, 사이드바를 닫는다.
+    isSidebarOpen && !sideChildren && setIsSidebarOpen(false);
 
-    !!sideBtnChildren && setIsMenuOpen(true);
+    // 사이드바 버튼을 누르면 사이드바를 오픈한다.
+    !!sideBtnChildren && setIsSidebarOpen(true);
   };
 
   useEffect(() => {
-    isMenuOpen && window.addEventListener('click', handleClose);
+    isSidebarOpen && window.addEventListener('click', handleClose);
     return () => {
       window.removeEventListener('click', handleClose);
     };
@@ -30,10 +29,10 @@ export const Sidebar = () => {
 
   return (
     <div>
-      <Button ref={sideBtn} onClick={() => setIsMenuOpen(true)}>
-        <Image src={imgPath} alt="sidebar button" width={55} height={55} />
+      <Button ref={sideBtn} onClick={() => setIsSidebarOpen(true)}>
+        <SidebarIcon />
       </Button>
-      <Container ref={side} isMenuOpen={isMenuOpen}>
+      <Container ref={side} isMenuOpen={isSidebarOpen}>
         <Top>
           <p>Hello, Lenini</p>
         </Top>
@@ -64,14 +63,19 @@ export const Sidebar = () => {
   );
 };
 
+const Button = styled.span`
+  display: flex;
+  flex-direction: row-reverse;
+`;
+
 const Container = styled.div<{ isMenuOpen: boolean }>`
   position: absolute;
-  width: 330px;
+  width: 300px;
   height: 100%;
   top: 0;
   right: -330px;
-  -webkit-transform: ${props => (props.isMenuOpen ? 'translateX(-330px)' : 'translateX(0)')};
-  transform: ${props => (props.isMenuOpen ? 'translateX(-330px)' : 'translateX(0)')};
+  -webkit-transform: ${props => (props.isMenuOpen ? 'translateX(-300px)' : 'translateX(0)')};
+  transform: ${props => (props.isMenuOpen ? 'translateX(-300px)' : 'translateX(0)')};
   -webkit-transition: 0.3s ease all;
   transition: 0.3s ease all;
   background: ${props => (props.isMenuOpen ? 'yellowgreen' : 'red')};
@@ -82,12 +86,6 @@ const Container = styled.div<{ isMenuOpen: boolean }>`
 const Top = styled.div`
   width: 100%;
   height: 60px;
-`;
-
-const Button = styled.div`
-  display: flex;
-  flex-direction: row-reverse;
-  margin-top: 55px;
 `;
 
 const Content = styled.div`
