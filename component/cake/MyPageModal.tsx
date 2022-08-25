@@ -5,6 +5,8 @@ import styled from 'styled-components';
 import Line from 'public/images/line_1.svg';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import DatePicker from 'react-datepicker';
+import Letter from 'public/images/letter.svg';
+
 import 'react-datepicker/dist/react-datepicker.css';
 
 type IMyPageModalProps = {
@@ -65,7 +67,17 @@ export const MyPageModal: React.FC<IMyPageModalProps> = ({ isModalOpen }) => {
           <DivDdayText>
             <DdayText>* d-day ??? *</DdayText>
           </DivDdayText>
-          <button type="submit">Apply</button>
+          <DivMyLetter>
+            <MyLetterButton>
+              <LetterImage />
+              <MyLetterText>내가 쓴 편지</MyLetterText>
+            </MyLetterButton>
+          </DivMyLetter>
+          <DivApply>
+            <ApplyButton type="submit">
+              <ApplyText>Apply</ApplyText>
+            </ApplyButton>
+          </DivApply>
         </form>
       </FormDiv>
     </Modal>
@@ -130,6 +142,9 @@ const DateForm = styled(DatePicker)`
 `;
 
 const DivDdayText = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 101px;
 `;
 
@@ -140,6 +155,57 @@ const DdayText = styled.text`
   font-size: 15px;
   line-height: 18px;
   color: #292929;
+`;
+
+const DivMyLetter = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 18px;
+`;
+
+const MyLetterButton = styled.button`
+  width: 242px;
+  height: 28px;
+
+  background: #f2f2f2;
+  border: 1.5px solid #fc4062;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 12px;
+`;
+const LetterImage = styled(Letter)``;
+
+const MyLetterText = styled.text`
+  font-family: 'NanumGothic';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 12px;
+  color: #fc4062;
+  margin-left: 8px;
+`;
+
+const DivApply = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+const ApplyButton = styled.button`
+  padding: 16px 32px;
+  gap: 12px;
+  width: 109px;
+  height: 51px;
+  background: #fc4062;
+  border: 1.5px solid #fc4062;
+  border-radius: 100px;
+`;
+const ApplyText = styled.text`
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  color: #ffffff;
 `;
 
 const ModalStyle = styled.div`
