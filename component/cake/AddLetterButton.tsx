@@ -5,29 +5,29 @@ import { RoundButton } from 'component/cake/RoundButton';
 import pallette from 'public/styles/colorPalette';
 
 type IAddLetterButtonProps = {
-  beforeBday: boolean;
+  isBeforeBday: boolean;
 };
 
-export const AddLetterButton: React.FC<IAddLetterButtonProps> = ({ beforeBday }) => {
+export const AddLetterButton: React.FC<IAddLetterButtonProps> = ({ isBeforeBday }) => {
   return (
     <Navigator className="wrapper">
       <RoundButton
         IconSrc="/icons/list.svg"
         IconSize={40}
-        IconColor={pallette.yellow}
-        IsActive={!beforeBday}
+        IconColor={pallette.gray}
+        isDisabled={isBeforeBday}
       ></RoundButton>
       <RoundButton
         IconSrc="/icons/share.svg"
         IconSize={60}
         IconColor={pallette.purple}
-        IsActive={true}
+        isDisabled={true}
       ></RoundButton>
       <RoundButton
         IconSrc="/icons/setting.svg"
         IconSize={40}
         IconColor={pallette.skyblue}
-        IsActive={true}
+        isDisabled={true}
       ></RoundButton>
     </Navigator>
   );

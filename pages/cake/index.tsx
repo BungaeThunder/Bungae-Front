@@ -19,15 +19,18 @@ const GlobalStyle = createGlobalStyle`
 function dDayCount(birthDay: Date) {
   const now = new Date();
 
-  const Today = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate();
-  const Bday = birthDay.getFullYear() + '-' + (birthDay.getMonth() + 1) + '-' + birthDay.getDate();
-  const BirthdayDate = new Date(Bday);
-  const TodayDate = new Date(Today);
-  const dateDiff = Math.abs((BirthdayDate.getTime() - TodayDate.getTime()) / (1000 * 60 * 60 * 24));
-  const beforeBday = BirthdayDate > TodayDate;
-  const dateCount = beforeBday ? '-' + Math.floor(dateDiff) : '+' + Math.floor(dateDiff);
+  const todayStr = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate();
+  const birthDayStr =
+    birthDay.getFullYear() + '-' + (birthDay.getMonth() + 1) + '-' + birthDay.getDate();
 
-  return { Today, Bday, dateCount, beforeBday };
+  const TodayDate = new Date(todayStr);
+  const birthDayDate = new Date(birthDayStr);
+
+  const dateDiff = Math.abs((birthDayDate.getTime() - TodayDate.getTime()) / (1000 * 60 * 60 * 24));
+  const isBeforeBday = birthDayDate > TodayDate;
+  const dateCount = isBeforeBday ? '-' + Math.floor(dateDiff) : '+' + Math.floor(dateDiff);
+
+  return { todayStr, birthDayStr, dateCount, isBeforeBday };
 }
 
 const Cake: NextPage = () => {
@@ -43,12 +46,12 @@ const Cake: NextPage = () => {
       <GlobalStyle />
       <main>
         <BirthdayInfo>
-          <p>Today:{dateInfo.Today}</p>
-          <p>Bday:{dateInfo.Bday}</p>
+          <p>Today:{dateInfo.todayStr}</p>
+          <p>Bday:{dateInfo.birthDayStr}</p>
           <p> D{dateInfo.dateCount}</p>
         </BirthdayInfo>
         <div>
-          <AddLetterButton beforeBday={dateInfo.beforeBday} />
+          <AddLetterButton isBeforeBday={dateInfo.isBeforeBday} />
         </div>
       </main>
     </div>

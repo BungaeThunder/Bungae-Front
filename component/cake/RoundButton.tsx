@@ -7,23 +7,23 @@ type RoundButtonProps = {
   IconSrc: string;
   IconSize: number;
   IconColor: string;
-  IsActive: boolean;
+  isDisabled: boolean;
 };
 
 export const RoundButton: React.FC<RoundButtonProps> = ({
   IconSrc,
   IconSize,
   IconColor,
-  IsActive,
+  isDisabled,
 }) => {
   return (
-    <IRoundButton IconSize={IconSize} IconColor={IconColor} disabled={!IsActive}>
+    <Button IconSize={IconSize} IconColor={IconColor} disabled={isDisabled}>
       <Image src={IconSrc} alt="button" width={18} height={30} />
-    </IRoundButton>
+    </Button>
   );
 };
 
-const IRoundButton = styled.button<{ IconSize: number; IconColor: string }>`
+const Button = styled.button<{ IconSize: number; IconColor: string }>`
   text-align: center;
   width: ${props => props.IconSize}px;
   height: ${props => props.IconSize}px;
