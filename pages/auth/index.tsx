@@ -1,14 +1,21 @@
 import type { NextPage } from 'next';
 
 import styled from 'styled-components';
-import LoginWithKakaoIcon from 'public/images/auth/login_with_kakao_account.svg';
-import LoginWithNaverIcon from 'public/images/auth/login_with_naver_account.svg';
-import RegisterWithKakaoIcon from 'public/images/auth/register_with_kakao_account.svg';
-import RegisterWithNaverIcon from 'public/images/auth/register_with_naver_account.svg';
 import { useEffect, useState } from 'react';
 import { Icon } from '@iconify/react';
+import LoginWithNaver from 'component/auth/LoginWithNaver';
+import LoginWithKakao from 'component/auth/LoginWithKakao';
 
-const SignIn: NextPage = () => {
+declare global {
+  interface Window {
+    /* eslint-disable @typescript-eslint/no-explicit-any */
+    naver: any;
+    Kakao: any;
+    /* eslint-enable @typescript-eslint/no-explicit-any */
+  }
+}
+
+const Auth: NextPage = () => {
   const [isSSR, setIsSSR] = useState(true);
 
   useEffect(() => {
@@ -22,21 +29,8 @@ const SignIn: NextPage = () => {
       </MainTextColored>
       <CakeIcon icon="noto-v1:birthday-cake" />
       <MainText>Create your cakey by:</MainText>
-      <StyledButton>
-        <RegisterWithNaverIcon />
-      </StyledButton>
-      <StyledButton>
-        <RegisterWithKakaoIcon />
-      </StyledButton>
-      <MainText>
-        or... <br /> Already have an account?
-      </MainText>
-      <StyledButton>
-        <LoginWithNaverIcon />
-      </StyledButton>
-      <StyledButton>
-        <LoginWithKakaoIcon />
-      </StyledButton>
+      <LoginWithNaver />
+      <LoginWithKakao />
     </TopDiv>
   ) : (
     // TODO: add loading page
@@ -76,13 +70,4 @@ const CakeIcon = styled(Icon)`
   margin: auto;
 `;
 
-const StyledButton = styled.button`
-  display: block;
-  margin: auto;
-  margin-top: 2.5px;
-  margin-bottom: 2.5px;
-  border: none;
-  background: none;
-`;
-
-export default SignIn;
+export default Auth;
