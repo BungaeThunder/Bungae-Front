@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 
 import { AddLetterButton } from 'component/cake/AddLetterButton';
 import { DdayCount } from 'component/cake/DdayCount';
+import { Sidebar } from 'component/common/Sidebar';
 import { MyPageModal } from 'component';
 
 const now = new Date();
@@ -25,6 +26,7 @@ const Cake: NextPage = () => {
 
   return !isSSR ? (
     <main>
+      <Sidebar />
       <div>
         <div>Today: {now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate()}</div>
         <div>Bday: {bday.getFullYear() + '-' + (bday.getMonth() + 1) + '-' + bday.getDate()}</div>
