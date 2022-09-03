@@ -28,15 +28,16 @@ function dDayCount(birthDay: Date) {
   const birthDayDate = new Date(birthDayStr);
 
   const dateDiff = Math.abs((birthDayDate.getTime() - todayDate.getTime()) / (1000 * 60 * 60 * 24));
-  const isBeforeBday = birthDayDate > todayDate;
-  const dateCount = isBeforeBday ? '-' + Math.floor(dateDiff) : '+' + Math.floor(dateDiff);
+  const isBeforeBirthday = birthDayDate > todayDate;
+  const dateCount = isBeforeBirthday ? '-' + Math.floor(dateDiff) : '+' + Math.floor(dateDiff);
 
-  return { todayStr, birthDayStr, dateCount, isBeforeBday };
+  return { todayStr, birthDayStr, dateCount, isBeforeBirthday };
 }
 
 const Cake: NextPage = () => {
   const [isSSR, setIsSSR] = useState(true);
   const dateInfo = dDayCount(new Date('2022-12-25'));
+  // TODO: dday 간판 작성
   console.log(dateInfo);
   useEffect(() => {
     setIsSSR(false);
@@ -53,7 +54,7 @@ const Cake: NextPage = () => {
           <p> D{dateInfo.dateCount}</p>
         </BirthdayInfo>
         <div>
-          <AddLetterButton isBeforeBday={dateInfo.isBeforeBday} />
+          <AddLetterButton isBeforeBirthday={dateInfo.isBeforeBirthday} />
         </div>
       </main>
     </div>
