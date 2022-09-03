@@ -29,7 +29,7 @@ export const MyPageModal: React.FC<MyPageModalProps> = ({ isModalOpen, closeModa
     handleSubmit,
     formState: { errors },
   } = useForm<MyPageInputs>();
-  const onSubmit: SubmitHandler<MyPageInputs> = data => console.log(data);
+  const onSubmit: SubmitHandler<MyPageInputs> = data => console.log('data: ', data);
 
   return (
     <Modal
@@ -57,14 +57,14 @@ export const MyPageModal: React.FC<MyPageModalProps> = ({ isModalOpen, closeModa
               name="date"
               render={({ field }) => (
                 <DateForm
-                  placeholderText=" The Date"
+                  placeholderText=" The Date(DD/MM/YYYY)"
                   onChange={date => field.onChange(date)}
                   selected={field.value}
                 />
               )}
             />
           </div>
-          {/* errors ㄴill return when field validation fails  */}
+          {/* errors will return when field validation fails  */}
           {errors.name && <span>This field is required</span>}
           <DdayTextDiv>
             <DdayText>* d-day ??? *</DdayText>
