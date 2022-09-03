@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 // TODO: 절대경로로 바꾸기
 import { AddLetterButton } from 'component/cake/AddLetterButton';
 import styled, { createGlobalStyle } from 'styled-components';
+import { Sidebar } from '../../component/common/Sidebar';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -43,6 +44,7 @@ const Cake: NextPage = () => {
 
   return !isSSR ? (
     <div>
+      <Sidebar />
       <GlobalStyle />
       <main>
         <BirthdayInfo>
