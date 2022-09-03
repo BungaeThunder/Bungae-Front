@@ -23,11 +23,11 @@ function dDayCount(birthDay: Date) {
   const birthDayStr =
     birthDay.getFullYear() + '-' + (birthDay.getMonth() + 1) + '-' + birthDay.getDate();
 
-  const TodayDate = new Date(todayStr);
+  const todayDate = new Date(todayStr);
   const birthDayDate = new Date(birthDayStr);
 
-  const dateDiff = Math.abs((birthDayDate.getTime() - TodayDate.getTime()) / (1000 * 60 * 60 * 24));
-  const isBeforeBday = birthDayDate > TodayDate;
+  const dateDiff = Math.abs((birthDayDate.getTime() - todayDate.getTime()) / (1000 * 60 * 60 * 24));
+  const isBeforeBday = birthDayDate > todayDate;
   const dateCount = isBeforeBday ? '-' + Math.floor(dateDiff) : '+' + Math.floor(dateDiff);
 
   return { todayStr, birthDayStr, dateCount, isBeforeBday };
