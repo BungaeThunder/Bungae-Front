@@ -9,26 +9,26 @@ import Letter from 'public/images/letter.svg';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
-type IMyPageModalProps = {
+type MyPageModalProps = {
   isModalOpen: boolean;
   closeModal: () => void;
 };
 
-type IMyPageInputs = {
+type MyPageInputs = {
   name: string;
   date: Date;
 };
 
-export const MyPageModal: React.FC<IMyPageModalProps> = ({ isModalOpen }) => {
-  const imgPath = '/images/profile_img.png';
+export const MyPageModal: React.FC<MyPageModalProps> = ({ isModalOpen }) => {
+  const profileImgPath = '/images/profile_img.svg';
 
   const {
     control,
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IMyPageInputs>();
-  const onSubmit: SubmitHandler<IMyPageInputs> = data => console.log(data);
+  } = useForm<MyPageInputs>();
+  const onSubmit: SubmitHandler<MyPageInputs> = data => console.log(data);
 
   return (
     <Modal
@@ -36,16 +36,16 @@ export const MyPageModal: React.FC<IMyPageModalProps> = ({ isModalOpen }) => {
       // style={customStyles}
       className="_"
       overlayClassName="_"
-      contentElement={(props, children) => <ModalStyle {...props}>{children}</ModalStyle>}
+      contentElement={(props, children) => <ModalStyleDiv {...props}>{children}</ModalStyleDiv>}
       overlayElement={(props, contentElement) => (
-        <OverlayStyle {...props}>{contentElement}</OverlayStyle>
+        <OverlayStyleDiv {...props}>{contentElement}</OverlayStyleDiv>
       )}
     >
       <Title>My Page</Title>
       <TitleLine />
-      <ProfileCircle>
-        <ProfileImage src={imgPath} />
-      </ProfileCircle>
+      <ProfileCircleDiv>
+        <ProfileImage src={profileImgPath} />
+      </ProfileCircleDiv>
       <FormDiv>
         <form onSubmit={handleSubmit(onSubmit)}>
           <FormInput {...register('name', { required: true })} placeholder=" Name" />
@@ -64,20 +64,20 @@ export const MyPageModal: React.FC<IMyPageModalProps> = ({ isModalOpen }) => {
           </div>
           {/* errors ㄴill return when field validation fails  */}
           {errors.name && <span>This field is required</span>}
-          <DivDdayText>
+          <DdayTextDiv>
             <DdayText>* d-day ??? *</DdayText>
-          </DivDdayText>
-          <DivMyLetter>
+          </DdayTextDiv>
+          <MyLetterDiv>
             <MyLetterButton>
               <LetterImage />
               <MyLetterText>내가 쓴 편지</MyLetterText>
             </MyLetterButton>
-          </DivMyLetter>
-          <DivApply>
+          </MyLetterDiv>
+          <ApplyDiv>
             <ApplyButton type="submit">
               <ApplyText>Apply</ApplyText>
             </ApplyButton>
-          </DivApply>
+          </ApplyDiv>
         </form>
       </FormDiv>
     </Modal>
@@ -103,7 +103,7 @@ const TitleLine = styled(Line)`
   margint-top: 10px;
 `;
 
-const ProfileCircle = styled.div`
+const ProfileCircleDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -141,7 +141,7 @@ const DateForm = styled(DatePicker)`
   border-radius: 8px;
 `;
 
-const DivDdayText = styled.div`
+const DdayTextDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -157,7 +157,7 @@ const DdayText = styled.text`
   color: #292929;
 `;
 
-const DivMyLetter = styled.div`
+const MyLetterDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -185,7 +185,7 @@ const MyLetterText = styled.text`
   margin-left: 8px;
 `;
 
-const DivApply = styled.div`
+const ApplyDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -208,7 +208,7 @@ const ApplyText = styled.text`
   color: #ffffff;
 `;
 
-const ModalStyle = styled.div`
+const ModalStyleDiv = styled.div`
   width: 326px;
   height: 655px;
 
@@ -222,7 +222,7 @@ const ModalStyle = styled.div`
 `;
 
 // background 설정하면 뒷 배경이 설정된다
-const OverlayStyle = styled.div`
+const OverlayStyleDiv = styled.div`
   position: fixed;
   display: flex;
   justify-content: center;
