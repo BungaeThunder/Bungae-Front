@@ -170,6 +170,10 @@ const MyLetterButton = styled.button`
   width: 242px;
   height: 28px;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   background: #f2f2f2;
   border: 1.5px solid #fc4062;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
