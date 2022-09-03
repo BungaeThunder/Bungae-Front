@@ -4,11 +4,15 @@ import React from 'react';
 import { RoundButton } from 'component/cake/RoundButton';
 import pallette from 'public/styles/colorPalette';
 
-type IAddLetterButtonProps = {
+type AddLetterButtonProps = {
   isBeforeBirthday: boolean;
+  openMypageModal: () => void;
 };
 
-export const AddLetterButton: React.FC<IAddLetterButtonProps> = ({ isBeforeBirthday }) => {
+export const AddLetterButton: React.FC<AddLetterButtonProps> = ({
+  isBeforeBirthday,
+  openMypageModal,
+}) => {
   return (
     <Navigator className="wrapper">
       <RoundButton
@@ -16,18 +20,21 @@ export const AddLetterButton: React.FC<IAddLetterButtonProps> = ({ isBeforeBirth
         iconSize={40}
         iconColor={pallette.gray}
         isDisabled={isBeforeBirthday}
+        onClick={() => null}
       ></RoundButton>
       <RoundButton
         iconSrc="/icons/share.svg"
         iconSize={60}
         iconColor={pallette.purple}
         isDisabled={!isBeforeBirthday}
+        onClick={() => null}
       ></RoundButton>
       <RoundButton
         iconSrc="/icons/setting.svg"
         iconSize={40}
         iconColor={pallette.skyblue}
-        isDisabled={false}
+        isDisabled={true}
+        onClick={openMypageModal}
       ></RoundButton>
     </Navigator>
   );
