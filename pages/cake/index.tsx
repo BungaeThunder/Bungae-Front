@@ -1,19 +1,44 @@
 import type { NextPage } from 'next';
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 // TODO: 절대경로로 바꾸기
-import { AddLetterButton } from '../../component/cake/AddLetterButton';
-import { DdayCount } from '../../component/cake/DdayCount';
+import { AddLetterButton } from 'component/cake/AddLetterButton';
+import styled, { createGlobalStyle } from 'styled-components';
 import { Sidebar } from '../../component/common/Sidebar';
 
-const now = new Date();
-const bday = new Date('2022-12-25');
+const GlobalStyle = createGlobalStyle`
+  body {
+    margin: 0px;
+    background-image: url("/images/portalCake.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    background-repeat: no-repeat;
+  }
+`;
+
+function dDayCount(birthDay: Date) {
+  const now = new Date();
+
+  const todayStr = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate();
+  const birthDayStr =
+    birthDay.getFullYear() + '-' + (birthDay.getMonth() + 1) + '-' + birthDay.getDate();
+
+  const todayDate = new Date(todayStr);
+  const birthDayDate = new Date(birthDayStr);
+
+  const dateDiff = Math.abs((birthDayDate.getTime() - todayDate.getTime()) / (1000 * 60 * 60 * 24));
+  const isBeforeBirthday = birthDayDate > todayDate;
+  const dateCount = isBeforeBirthday ? '-' + Math.floor(dateDiff) : '+' + Math.floor(dateDiff);
+
+  return { todayStr, birthDayStr, dateCount, isBeforeBirthday };
+}
 
 const Cake: NextPage = () => {
-  const isArticle = true;
   const [isSSR, setIsSSR] = useState(true);
-
+  const dateInfo = dDayCount(new Date('2022-12-25'));
+  // TODO: dday 간판 작성
+  console.log(dateInfo);
   useEffect(() => {
     setIsSSR(false);
   }, []);
@@ -21,29 +46,28 @@ const Cake: NextPage = () => {
   return !isSSR ? (
     <div>
       <Sidebar />
+      <GlobalStyle />
       <main>
+        <BirthdayInfo>
+          <p>Today:{dateInfo.todayStr}</p>
+          <p>Bday:{dateInfo.birthDayStr}</p>
+          <p> D{dateInfo.dateCount}</p>
+        </BirthdayInfo>
         <div>
-          <div>Today: {now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate()}</div>
-          <div>Bday: {bday.getFullYear() + '-' + (bday.getMonth() + 1) + '-' + bday.getDate()}</div>
-          <DdayCount
-            Birthday={bday.getFullYear() + '-' + (bday.getMonth() + 1) + '-' + bday.getDate()}
-            Today={now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate()}
-          ></DdayCount>
-        </div>
-        <div>
-          <Image src="/images/cake.png" alt="cake" height={500} width={500} />
-        </div>
-        <div>
-          <AddLetterButton isArticle={isArticle} />
+          <AddLetterButton isBeforeBirthday={dateInfo.isBeforeBirthday} />
         </div>
       </main>
     </div>
   ) : (
     // TODO: add loading page
     <div>
-      <p>loading</p>
+      <p>loading...</p>
     </div>
   );
 };
+
+const BirthdayInfo = styled.div`
+  color: white;
+`;
 
 export default Cake;
