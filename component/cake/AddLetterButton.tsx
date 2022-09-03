@@ -12,21 +12,21 @@ export const AddLetterButton: React.FC<IAddLetterButtonProps> = ({ isBeforeBirth
   return (
     <Navigator className="wrapper">
       <RoundButton
-        IconSrc="/icons/list.svg"
-        IconSize={40}
-        IconColor={pallette.gray}
+        iconSrc="/icons/list.svg"
+        iconSize={40}
+        iconColor={pallette.gray}
         isDisabled={isBeforeBirthday}
       ></RoundButton>
       <RoundButton
-        IconSrc="/icons/share.svg"
-        IconSize={60}
-        IconColor={pallette.purple}
+        iconSrc="/icons/share.svg"
+        iconSize={60}
+        iconColor={pallette.purple}
         isDisabled={!isBeforeBirthday}
       ></RoundButton>
       <RoundButton
-        IconSrc="/icons/setting.svg"
-        IconSize={40}
-        IconColor={pallette.skyblue}
+        iconSrc="/icons/setting.svg"
+        iconSize={40}
+        iconColor={pallette.skyblue}
         isDisabled={false}
       ></RoundButton>
     </Navigator>

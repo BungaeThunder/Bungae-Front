@@ -4,31 +4,31 @@ import React from 'react';
 import Image from 'next/image';
 
 type RoundButtonProps = {
-  IconSrc: string;
-  IconSize: number;
-  IconColor: string;
+  iconSrc: string;
+  iconSize: number;
+  iconColor: string;
   isDisabled: boolean;
 };
 
 export const RoundButton: React.FC<RoundButtonProps> = ({
-  IconSrc,
-  IconSize,
-  IconColor,
+  iconSrc,
+  iconSize,
+  iconColor,
   isDisabled,
 }) => {
   return (
-    <Button IconSize={IconSize} IconColor={IconColor} disabled={isDisabled}>
-      <Image src={IconSrc} alt="button" width={18} height={30} />
+    <Button iconSize={iconSize} iconColor={iconColor} disabled={isDisabled}>
+      <Image src={iconSrc} alt="button" width={18} height={30} />
     </Button>
   );
 };
 
-const Button = styled.button<{ IconSize: number; IconColor: string }>`
+const Button = styled.button<{ iconSize: number; iconColor: string }>`
   text-align: center;
-  width: ${props => props.IconSize}px;
-  height: ${props => props.IconSize}px;
+  width: ${props => props.iconSize}px;
+  height: ${props => props.iconSize}px;
   border-radius: 50%;
-  background-color: ${props => props.IconColor};
+  background-color: ${props => props.iconColor};
   float: left;
   color: white;
 `;
