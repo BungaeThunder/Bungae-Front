@@ -8,6 +8,7 @@ type RoundButtonProps = {
   iconSize: number;
   iconColor: string;
   isDisabled: boolean;
+  onClick: () => void;
 };
 
 export const RoundButton: React.FC<RoundButtonProps> = ({
@@ -15,10 +16,11 @@ export const RoundButton: React.FC<RoundButtonProps> = ({
   iconSize,
   iconColor,
   isDisabled,
+  onClick,
 }) => {
   return (
     <Button iconSize={iconSize} iconColor={iconColor} disabled={isDisabled}>
-      <Image src={iconSrc} alt="button" width={18} height={30} />
+      <Image src={iconSrc} alt="button" width={18} height={30} onClick={onClick} />
     </Button>
   );
 };

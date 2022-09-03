@@ -37,18 +37,24 @@ const dDayCount = (birthDay: Date) => {
 const Cake: NextPage = () => {
   const [isSSR, setIsSSR] = useState<boolean>(true);
 
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(true);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const dateInfo = dDayCount(new Date('2022-12-25'));
   // TODO: dday 간판 작성
   console.log(dateInfo);
 
-  const closeModal = () => {
+  const openMypageModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeMypageModal = () => {
     setIsModalOpen(false);
   };
 
   useEffect(() => {
     setIsSSR(false);
   }, []);
+
+  console.log('isModalOpen : ', isModalOpen);
 
   return !isSSR ? (
     <div>
@@ -61,9 +67,12 @@ const Cake: NextPage = () => {
           <p> D{dateInfo.dateCount}</p>
         </BirthdayInfo>
         <div>
-          <AddLetterButton isBeforeBirthday={dateInfo.isBeforeBirthday} />
+          <AddLetterButton
+            isBeforeBirthday={dateInfo.isBeforeBirthday}
+            openMypageModal={openMypageModal}
+          />
         </div>
-        <MyPageModal isModalOpen={isModalOpen} closeModal={closeModal} />
+        <MyPageModal isModalOpen={isModalOpen} closeModal={closeMypageModal} />
       </main>
     </div>
   ) : (

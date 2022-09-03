@@ -6,6 +6,7 @@ import Line from 'public/images/line_1.svg';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import DatePicker from 'react-datepicker';
 import Letter from 'public/images/letter.svg';
+import Image from 'next/image';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -19,7 +20,7 @@ type MyPageInputs = {
   date: Date;
 };
 
-export const MyPageModal: React.FC<MyPageModalProps> = ({ isModalOpen }) => {
+export const MyPageModal: React.FC<MyPageModalProps> = ({ isModalOpen, closeModal }) => {
   const profileImgPath = '/images/profile_img.svg';
 
   const {
@@ -41,6 +42,7 @@ export const MyPageModal: React.FC<MyPageModalProps> = ({ isModalOpen }) => {
         <OverlayStyleDiv {...props}>{contentElement}</OverlayStyleDiv>
       )}
     >
+      <Image src={'/icons/close.svg'} alt="button" width={13} height={13} onClick={closeModal} />
       <Title>My Page</Title>
       <TitleLine />
       <ProfileCircleDiv>
