@@ -21,13 +21,13 @@ export const AddLetterButton: React.FC<IAddLetterButtonProps> = ({ isBeforeBday 
         IconSrc="/icons/share.svg"
         IconSize={60}
         IconColor={pallette.purple}
-        isDisabled={true}
+        isDisabled={!isBeforeBday}
       ></RoundButton>
       <RoundButton
         IconSrc="/icons/setting.svg"
         IconSize={40}
         IconColor={pallette.skyblue}
-        isDisabled={true}
+        isDisabled={false}
       ></RoundButton>
     </Navigator>
   );
