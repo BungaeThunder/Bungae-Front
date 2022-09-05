@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react';
 import { AddLetterButton } from 'component/cake/AddLetterButton';
 import { Sidebar } from 'component/common/Sidebar';
 import { MyPageModal } from 'component';
-import styled, { createGlobalStyle } from 'styled-components';
+import { DdayCounter } from 'component/cake/DdayCounter';
+import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -27,11 +28,13 @@ const dDayCount = (birthDay: Date) => {
   const todayDate = new Date(todayStr);
   const birthDayDate = new Date(birthDayStr);
 
-  const dateDiff = Math.abs((birthDayDate.getTime() - todayDate.getTime()) / (1000 * 60 * 60 * 24));
+  const dateDiff = Math.floor(
+    Math.abs((birthDayDate.getTime() - todayDate.getTime()) / (1000 * 60 * 60 * 24)),
+  );
   const isBeforeBirthday = birthDayDate > todayDate;
-  const dateCount = isBeforeBirthday ? '-' + Math.floor(dateDiff) : '+' + Math.floor(dateDiff);
+  const dateCount = isBeforeBirthday ? '-' + dateDiff : '+' + dateDiff;
 
-  return { todayStr, birthDayStr, dateCount, isBeforeBirthday };
+  return { todayStr, birthDayStr, dateCount, isBeforeBirthday, dateDiff };
 };
 
 const Cake: NextPage = () => {
@@ -61,11 +64,7 @@ const Cake: NextPage = () => {
       <Sidebar />
       <GlobalStyle />
       <main>
-        <BirthdayInfo>
-          <p>Today:{dateInfo.todayStr}</p>
-          <p>Bday:{dateInfo.birthDayStr}</p>
-          <p> D{dateInfo.dateCount}</p>
-        </BirthdayInfo>
+        <DdayCounter isBeforeBirthday={dateInfo.isBeforeBirthday} dateDiff={dateInfo.dateDiff} />
         <div>
           <AddLetterButton
             isBeforeBirthday={dateInfo.isBeforeBirthday}
@@ -82,8 +81,5 @@ const Cake: NextPage = () => {
     </div>
   );
 };
-const BirthdayInfo = styled.div`
-  color: white;
-`;
 
 export default Cake;
