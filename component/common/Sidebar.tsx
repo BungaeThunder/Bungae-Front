@@ -163,7 +163,6 @@ const LetterTextSpan = styled.span`
   vertical-align: middle;
 `;
 
-/* TODO: styled component naming rule 변경 필요 */
 const SupportUsContainerDiv = styled.div`
   padding-left: 3%;
 `;
