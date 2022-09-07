@@ -37,12 +37,12 @@ export const Sidebar = () => {
         <SidebarIcon />
       </SidebarButtonSpan>
       <ContainerDiv ref={side} isMenuOpen={isSidebarOpen}>
-        <ContentDiv>
+        <div>
           <MyInfoTextDiv>
             Hello, Lenini <br /> Happy Unbirthday!
           </MyInfoTextDiv>
           <ProfileIcon />
-        </ContentDiv>
+        </div>
         {/* GO TO MY SESSION */}
         <ContentDiv>
           <GoToMySessionDiv>{/* 배경 이미지 넣어야 함 */}</GoToMySessionDiv>
@@ -114,7 +114,7 @@ const SidebarButtonSpan = styled.span`
 const ContainerDiv = styled.div<{ isMenuOpen: boolean }>`
   position: absolute;
   width: 260px;
-  height: 100%;
+  height: calc(100% - 40px);
   top: 0;
   right: -300px;
   -webkit-transform: ${props => (props.isMenuOpen ? 'translateX(-300px)' : 'translateX(0)')};
@@ -134,7 +134,7 @@ const MyInfoTextDiv = styled.div`
 `;
 
 const ContentDiv = styled.div`
-  margin-bottom: 30px;
+  margin-top: 30px;
 `;
 
 const GoToMySessionDiv = styled.div`
