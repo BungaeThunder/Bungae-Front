@@ -24,4 +24,6 @@ const DdayCounterDiv = styled.div`
 
   text-align: center;
   line-height: 63px;
+  font-family: 'Fredoka One';
+  font-size: 1.2em;
 `;

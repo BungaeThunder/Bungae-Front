@@ -42,7 +42,7 @@ const Cake: NextPage = () => {
   const [isSSR, setIsSSR] = useState<boolean>(true);
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const dateInfo = dDayCount(new Date('2022-12-25'));
+  const dateInfo = dDayCount(new Date('2023-01-01'));
 
   const openMypageModal = () => {
     setIsModalOpen(true);
@@ -57,19 +57,14 @@ const Cake: NextPage = () => {
   }, []);
 
   console.log('isModalOpen : ', isModalOpen);
-  // 위에 dday 간판과 사이드바 버튼을 header 로 빼서 적용?
-  // header에 z index 지정해놓고, 그림들 묶어서 부모에 absolute를 주고 zindex낮추니까 겹치는 문제 사라짐
   return !isSSR ? (
     <div>
       <Header>
         <DdayCounter isBeforeBirthday={dateInfo.isBeforeBirthday} dateDiff={dateInfo.dateDiff} />
         <Sidebar />
       </Header>
-      {/* <Sidebar /> */}
       <GlobalStyle />
       <AnimatedImg />
-      {/* <LightRadioImg src="images/light_radio.png" /> */}
-      {/* <LightCandleImg src="images/light_candle.png" /> */}
       <main>
         <div>
           <AddLetterButton
@@ -91,7 +86,7 @@ const Cake: NextPage = () => {
 const Header = styled.header`
   display: flex;
   justify-content: space-between;
-  padding: 30px 20px 10px 20px;
+  padding: 20px 20px 10px 20px;
   z-index: 10;
 `;
 

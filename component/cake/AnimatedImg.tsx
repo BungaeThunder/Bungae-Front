@@ -70,7 +70,7 @@ const LightRadioImg = styled.img`
 
 const LightCandleImg = styled.img`
   position: absolute;
-  top: 21vh;
+  top: 24vh;
   left: 21vw;
   opacity: 0.7;
   animation: ${blinkingEffectCandle} 0.7s linear infinite;
@@ -82,7 +82,7 @@ const LightDecorationImg = styled.img`
   /* border: solid red; */
   width: 99vw;
   opacity: 0.4;
-  left: 0vw;
-  top: -14vh;
+  left: 1vw;
+  top: -13vh;
   animation: ${blinkingEffectDecoration} 1s linear infinite;
 `;
