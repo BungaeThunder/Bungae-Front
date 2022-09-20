@@ -1,6 +1,10 @@
 import { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
-import SidebarIcon from 'public/images/button/sidebar-button.svg';
+import SidebarIcon from 'public/images/button/sidebar_button.svg';
+import ProfileIcon from 'public/images/button/sidebar_button.svg';
+import LetterIcon from 'public/images/button/letter.svg';
+import LetterDoneIcon from 'public/images/button/letter_done.svg';
+import SupportIcon from 'public/images/button/support_us_button.svg';
 
 export const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
@@ -29,65 +33,144 @@ export const Sidebar = () => {
 
   return (
     <div>
-      <Button ref={sideBtn} onClick={() => setIsSidebarOpen(true)}>
+      <SidebarButtonSpan ref={sideBtn} onClick={() => setIsSidebarOpen(true)}>
         <SidebarIcon />
-      </Button>
-      <Container ref={side} isMenuOpen={isSidebarOpen}>
-        <Top>
-          <p>Hello, Lenini</p>
-        </Top>
+      </SidebarButtonSpan>
+      <ContainerDiv ref={side} isMenuOpen={isSidebarOpen}>
         <div>
-          <p>내 케이크 보기</p>
+          <MyInfoTextDiv>
+            Hello, Lenini <br /> Happy Unbirthday!
+          </MyInfoTextDiv>
+          <ProfileIcon />
         </div>
-        <Content>
-          <p>알림</p>
-          <ul>
-            <li>새로운 편지가 도착했어요. 18:30</li>
-            <li>새로운 편지가 도착했어요. 18:10</li>
-            <li>Selini님의 답장이 도착했어요. 17:28</li>
-          </ul>
-        </Content>
-        <div>
-          <p>후원 배너</p>
-        </div>
-        <Content>
-          <p>작성 중이던 편지</p>
-          <ul>
-            <li>To. Bnini</li>
-            <li>To. Chonini</li>
-            <li>To. Conini</li>
-          </ul>
-        </Content>
-      </Container>
+        {/* GO TO MY SESSION */}
+        <ContentDiv>
+          <GoToMySessionDiv>{/* 배경 이미지 넣어야 함 */}</GoToMySessionDiv>
+        </ContentDiv>
+        {/* 작성한 편지 */}
+        <ContentDiv>
+          <p>작성한 편지</p>
+          <div>
+            {/* 서버 작업 후 반복문으로, 리스트 정렬 기준 필요, DB에 편지 다 쓴 상태에 대한 필드 추가 필요 */}
+            <LetterContainerDiv background={'#FF6262'}>
+              <LetterDiv>
+                <LetterDoneIcon />
+                <LetterTextSpan>hihih monday</LetterTextSpan>
+              </LetterDiv>
+            </LetterContainerDiv>
+            <LetterContainerDiv background={'#FF9797'}>
+              <LetterDiv>
+                <LetterDoneIcon />
+                <LetterTextSpan>hihih dskljad</LetterTextSpan>
+              </LetterDiv>
+            </LetterContainerDiv>
+            <LetterContainerDiv background={'#FFC3C3'}>
+              <LetterDiv>
+                <LetterDoneIcon />
+                <LetterTextSpan>hihih kwkwho</LetterTextSpan>
+              </LetterDiv>
+            </LetterContainerDiv>
+            <LetterContainerDiv background={'#F1F1F1'}>
+              <LetterDiv>
+                <LetterIcon />
+                <LetterTextSpan>hihih kwkwho</LetterTextSpan>
+              </LetterDiv>
+            </LetterContainerDiv>
+            <LetterContainerDiv background={'#F1F1F1'}>
+              <LetterDiv>
+                <LetterIcon />
+                <LetterTextSpan>hihih kwkwho</LetterTextSpan>
+              </LetterDiv>
+            </LetterContainerDiv>
+            <LetterContainerDiv background={'#F1F1F1'}>
+              <LetterDiv>
+                <LetterIcon />
+                <LetterTextSpan>hihih kwkwho</LetterTextSpan>
+              </LetterDiv>
+            </LetterContainerDiv>
+          </div>
+        </ContentDiv>
+        {/* SUPPORT US */}
+        <ContentDiv>
+          <SupportUsContainerDiv>
+            <SupportIcon />
+          </SupportUsContainerDiv>
+        </ContentDiv>
+        {/* AD */}
+        <ContentDiv>
+          <AdDiv>AD</AdDiv>
+        </ContentDiv>
+      </ContainerDiv>
     </div>
   );
 };
 
-const Button = styled.span`
+const SidebarButtonSpan = styled.span`
+  padding: 3%;
   display: flex;
   flex-direction: row-reverse;
 `;
 
-const Container = styled.div<{ isMenuOpen: boolean }>`
+const ContainerDiv = styled.div<{ isMenuOpen: boolean }>`
   position: absolute;
-  width: 300px;
-  height: 100%;
+  width: 260px;
+  height: calc(100% - 40px);
   top: 0;
-  right: -330px;
+  right: -300px;
   -webkit-transform: ${props => (props.isMenuOpen ? 'translateX(-300px)' : 'translateX(0)')};
   transform: ${props => (props.isMenuOpen ? 'translateX(-300px)' : 'translateX(0)')};
   -webkit-transition: 0.3s ease all;
   transition: 0.3s ease all;
-  background: ${props => (props.isMenuOpen ? 'yellowgreen' : 'red')};
+  background: white;
   z-index: 999;
-  padding: 5px;
+  padding: 20px;
 `;
 
-const Top = styled.div`
+const MyInfoTextDiv = styled.div`
+  width: 70%;
+  height: 60px;
+  float: left;
+  padding-top: 10px;
+`;
+
+const ContentDiv = styled.div`
+  margin-top: 30px;
+`;
+
+const GoToMySessionDiv = styled.div`
+  border-radius: 20px;
+  background: #d9d9d9;
+  width: 100%;
+  height: 160px;
+`;
+
+const LetterContainerDiv = styled.div<{ background: string }>`
+  border-radius: 10px;
+  border: 2px solid white;
+  width: 95%;
+  height: 35px;
+  background: ${props => props.background};
+  padding: 5px;
+  margin-bottom: 5px;
+`;
+
+const LetterDiv = styled.div`
+  display: table;
+`;
+
+const LetterTextSpan = styled.span`
+  display: table-cell;
+  vertical-align: middle;
+`;
+
+const SupportUsContainerDiv = styled.div`
+  padding-left: 3%;
+`;
+
+const AdDiv = styled.div`
+  background: #d0d0d0;
   width: 100%;
   height: 60px;
-`;
-
-const Content = styled.div`
-  background: blueviolet;
+  text-align: center;
+  align-items: center;
 `;
