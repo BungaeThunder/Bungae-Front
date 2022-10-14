@@ -1,15 +1,17 @@
 import type { NextPage } from 'next';
 import { useEffect, useState } from 'react';
+import styled, { createGlobalStyle } from 'styled-components';
 
 import { AddLetterButton } from 'component/cake/AddLetterButton';
 import { Sidebar } from 'component/common/Sidebar';
 import { MyPageModal } from 'component';
-import styled, { createGlobalStyle } from 'styled-components';
+import { DdayCounter } from 'component/cake/DdayCounter';
+import { AnimatedImg } from 'component/cake/AnimatedImg';
 
 const GlobalStyle = createGlobalStyle`
   body {
     margin: 0px;
-    background-image: url("/images/portalCake.jpg");
+    background-image: url("/images/room_night.png");
     background-size: cover;
     background-position: center;
     height: 100vh;
@@ -27,20 +29,20 @@ const dDayCount = (birthDay: Date) => {
   const todayDate = new Date(todayStr);
   const birthDayDate = new Date(birthDayStr);
 
-  const dateDiff = Math.abs((birthDayDate.getTime() - todayDate.getTime()) / (1000 * 60 * 60 * 24));
-  const isBeforeBirthday = birthDayDate > todayDate;
-  const dateCount = isBeforeBirthday ? '-' + Math.floor(dateDiff) : '+' + Math.floor(dateDiff);
+  const dateDiff = Math.floor(
+    Math.abs((birthDayDate.getTime() - todayDate.getTime()) / (1000 * 60 * 60 * 24)),
+  );
+  const isBeforeBirthday = birthDayDate >= todayDate;
+  const dateCount = isBeforeBirthday ? '-' + dateDiff : '+' + dateDiff;
 
-  return { todayStr, birthDayStr, dateCount, isBeforeBirthday };
+  return { todayStr, birthDayStr, dateCount, isBeforeBirthday, dateDiff };
 };
 
 const Cake: NextPage = () => {
   const [isSSR, setIsSSR] = useState<boolean>(true);
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const dateInfo = dDayCount(new Date('2022-12-25'));
-  // TODO: dday 간판 작성
-  console.log(dateInfo);
+  const dateInfo = dDayCount(new Date('2023-01-01'));
 
   const openMypageModal = () => {
     setIsModalOpen(true);
@@ -55,17 +57,15 @@ const Cake: NextPage = () => {
   }, []);
 
   console.log('isModalOpen : ', isModalOpen);
-
   return !isSSR ? (
     <div>
-      <Sidebar />
+      <Header>
+        <DdayCounter isBeforeBirthday={dateInfo.isBeforeBirthday} dateDiff={dateInfo.dateDiff} />
+        <Sidebar />
+      </Header>
       <GlobalStyle />
+      <AnimatedImg />
       <main>
-        <BirthdayInfo>
-          <p>Today:{dateInfo.todayStr}</p>
-          <p>Bday:{dateInfo.birthDayStr}</p>
-          <p> D{dateInfo.dateCount}</p>
-        </BirthdayInfo>
         <div>
           <AddLetterButton
             isBeforeBirthday={dateInfo.isBeforeBirthday}
@@ -82,8 +82,12 @@ const Cake: NextPage = () => {
     </div>
   );
 };
-const BirthdayInfo = styled.div`
-  color: white;
+
+const Header = styled.header`
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 20px 10px 20px;
+  z-index: 10;
 `;
 
 export default Cake;
