@@ -9,4 +9,13 @@ export default createGlobalStyle`
     font-weight: 300;
     font-style: normal;
   }
+
+  @font-face {
+    font-family: 'NanumSquareNeo';
+    font-weight: 100 900;
+    font-display: swap;
+    font-style: normal;
+    src: local(NanumSquareNeo), 
+    url('NanumSquareNeo-Variable.woff2') format('woff2');
+  }
 `;

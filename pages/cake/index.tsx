@@ -1,80 +1,18 @@
 import type { NextPage } from 'next';
 import { useEffect, useState } from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
-
-import { AddLetterButton } from 'component/cake/AddLetterButton';
-import { Sidebar } from 'component/common/Sidebar';
-import { MyPageModal } from 'component';
-import { DdayCounter } from 'component/cake/DdayCounter';
-import { AnimatedImg } from 'component/cake/AnimatedImg';
-
-const GlobalStyle = createGlobalStyle`
-  body {
-    margin: 0px;
-    background-image: url("/images/room_night.png");
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    background-repeat: no-repeat;
-  }
-`;
-
-const dDayCount = (birthDay: Date) => {
-  const now = new Date();
-
-  const todayStr = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate();
-  const birthDayStr =
-    birthDay.getFullYear() + '-' + (birthDay.getMonth() + 1) + '-' + birthDay.getDate();
-
-  const todayDate = new Date(todayStr);
-  const birthDayDate = new Date(birthDayStr);
-
-  const dateDiff = Math.floor(
-    Math.abs((birthDayDate.getTime() - todayDate.getTime()) / (1000 * 60 * 60 * 24)),
-  );
-  const isBeforeBirthday = birthDayDate >= todayDate;
-  const dateCount = isBeforeBirthday ? '-' + dateDiff : '+' + dateDiff;
-
-  return { todayStr, birthDayStr, dateCount, isBeforeBirthday, dateDiff };
-};
+import BackgroundContainer from 'component/cake/BackgroundContainer';
+import { CakeHeader } from 'component/common/CakeHeader';
 
 const Cake: NextPage = () => {
   const [isSSR, setIsSSR] = useState<boolean>(true);
 
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const dateInfo = dDayCount(new Date('2023-01-01'));
-
-  const openMypageModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeMypageModal = () => {
-    setIsModalOpen(false);
-  };
-
   useEffect(() => {
     setIsSSR(false);
   }, []);
-
-  console.log('isModalOpen : ', isModalOpen);
   return !isSSR ? (
-    <div>
-      <Header>
-        <DdayCounter isBeforeBirthday={dateInfo.isBeforeBirthday} dateDiff={dateInfo.dateDiff} />
-        <Sidebar />
-      </Header>
-      <GlobalStyle />
-      <AnimatedImg />
-      <main>
-        <div>
-          <AddLetterButton
-            isBeforeBirthday={dateInfo.isBeforeBirthday}
-            openMypageModal={openMypageModal}
-          />
-        </div>
-        <MyPageModal isModalOpen={isModalOpen} closeModal={closeMypageModal} />
-      </main>
-    </div>
+    <BackgroundContainer>
+      <CakeHeader userName={'jeong'} dDay={22}></CakeHeader>
+    </BackgroundContainer>
   ) : (
     // TODO: add loading page
     <div>
@@ -82,12 +20,5 @@ const Cake: NextPage = () => {
     </div>
   );
 };
-
-const Header = styled.header`
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 20px 10px 20px;
-  z-index: 10;
-`;
 
 export default Cake;
