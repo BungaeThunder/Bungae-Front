@@ -1,13 +1,13 @@
 import { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
-import SidebarIcon from 'public/images/button/sidebar_button.svg';
-import ProfileIcon from 'public/images/button/sidebar_button.svg';
+import MenuIcon from 'public/images/button/menu_button.svg';
+import ProfileIcon from 'public/images/button/menu_button.svg';
 import LetterIcon from 'public/images/button/letter.svg';
 import LetterDoneIcon from 'public/images/button/letter_done.svg';
 import SupportIcon from 'public/images/button/support_us_button.svg';
 
-export const Sidebar = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
+export const Menu = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   const side = useRef<HTMLInputElement>(null);
   const sideBtn = useRef<HTMLInputElement>(null);
@@ -17,15 +17,15 @@ export const Sidebar = () => {
     const sideChildren = side.current?.contains(target);
     const sideBtnChildren = sideBtn.current?.firstChild?.contains(target);
 
-    // 사이드바 열린 상태에서 사이드바 버튼 외부영역을 누르면, 사이드바를 닫는다.
-    isSidebarOpen && !sideChildren && setIsSidebarOpen(false);
+    // 메뉴 열린 상태에서 메뉴 버튼 외부영역을 누르면, 메뉴를 닫는다.
+    isMenuOpen && !sideChildren && setIsMenuOpen(false);
 
-    // 사이드바 버튼을 누르면 사이드바를 오픈한다.
-    !!sideBtnChildren && setIsSidebarOpen(true);
+    // 메뉴 버튼을 누르면 메뉴를 오픈한다.
+    !!sideBtnChildren && setIsMenuOpen(true);
   };
 
   useEffect(() => {
-    isSidebarOpen && window.addEventListener('click', handleClose);
+    isMenuOpen && window.addEventListener('click', handleClose);
     return () => {
       window.removeEventListener('click', handleClose);
     };
@@ -33,10 +33,10 @@ export const Sidebar = () => {
 
   return (
     <div>
-      <SidebarButtonSpan ref={sideBtn} onClick={() => setIsSidebarOpen(true)}>
-        <SidebarIcon />
-      </SidebarButtonSpan>
-      <ContainerDiv ref={side} isMenuOpen={isSidebarOpen}>
+      <MenuButtonSpan ref={sideBtn} onClick={() => setIsMenuOpen(true)}>
+        <MenuIcon />
+      </MenuButtonSpan>
+      <ContainerDiv ref={side} isMenuOpen={isMenuOpen}>
         <div>
           <MyInfoTextDiv>
             Hello, Lenini <br /> Happy Unbirthday!
@@ -105,7 +105,7 @@ export const Sidebar = () => {
   );
 };
 
-const SidebarButtonSpan = styled.span`
+const MenuButtonSpan = styled.span`
   padding: 3%;
   display: flex;
   flex-direction: row-reverse;

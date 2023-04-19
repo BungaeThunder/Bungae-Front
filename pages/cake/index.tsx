@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 
 import { AddLetterButton } from 'component/cake/AddLetterButton';
-import { Sidebar } from 'component/common/Sidebar';
+import { Menu } from 'component/common/Menu';
 import { MyPageModal } from 'component';
 import { DdayCounter } from 'component/cake/DdayCounter';
 import { AnimatedImg } from 'component/cake/AnimatedImg';
@@ -61,7 +61,7 @@ const Cake: NextPage = () => {
     <div>
       <Header>
         <DdayCounter isBeforeBirthday={dateInfo.isBeforeBirthday} dateDiff={dateInfo.dateDiff} />
-        <Sidebar />
+        <Menu />
       </Header>
       <GlobalStyle />
       <AnimatedImg />
