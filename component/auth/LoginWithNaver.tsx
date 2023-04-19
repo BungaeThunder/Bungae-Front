@@ -1,6 +1,8 @@
+import { observer } from 'mobx-react';
 import Script from 'next/script';
 import LoginWithNaverIcon from 'public/images/auth/login_with_naver_account.svg';
 import { useRef } from 'react';
+import UserStore from 'store/UserStore';
 import styled from 'styled-components';
 import StyledLoginButton from './StyledLoginButton';
 
@@ -17,6 +19,8 @@ const LoginWithNaver = () => {
     });
 
     login.init();
+
+    UserStore.setId('naverId');
   };
 
   return (
@@ -34,4 +38,4 @@ const NaverIdLogin = styled.div`
   display: none;
 `;
 
-export default LoginWithNaver;
+export default observer(LoginWithNaver);

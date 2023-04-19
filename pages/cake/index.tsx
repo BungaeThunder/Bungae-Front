@@ -7,6 +7,8 @@ import { Sidebar } from 'component/common/Sidebar';
 import { MyPageModal } from 'component';
 import { DdayCounter } from 'component/cake/DdayCounter';
 import { AnimatedImg } from 'component/cake/AnimatedImg';
+import UserStore from 'store/UserStore';
+import { observer } from 'mobx-react';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -71,6 +73,7 @@ const Cake: NextPage = () => {
             isBeforeBirthday={dateInfo.isBeforeBirthday}
             openMypageModal={openMypageModal}
           />
+          <div>Id: {UserStore.id} </div>
         </div>
         <MyPageModal isModalOpen={isModalOpen} closeModal={closeMypageModal} />
       </main>
@@ -90,4 +93,4 @@ const Header = styled.header`
   z-index: 10;
 `;
 
-export default Cake;
+export default observer(Cake);
