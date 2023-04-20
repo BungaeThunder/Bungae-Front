@@ -7,6 +7,10 @@ const theme = {
     yellow: '#F2E56E',
     purple: '#C5A2FE',
     gray: '#C1C1C1',
+    white: '#ffffff',
+  },
+  files: {
+    backgroundImage: '/images/room_night.png',
   },
 };
 
