@@ -1,23 +1,12 @@
 import type { NextPage } from 'next';
 import { useEffect, useState } from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 
 import { AddLetterButton } from 'component/cake/AddLetterButton';
 import { Sidebar } from 'component/common/Sidebar';
-import { MyPageModal } from 'component';
+import { MyPageModal, withCakeBackgroundStyle } from 'component';
 import { DdayCounter } from 'component/cake/DdayCounter';
 import { AnimatedImg } from 'component/cake/AnimatedImg';
-
-const GlobalStyle = createGlobalStyle`
-  body {
-    margin: 0px;
-    background-image: url("/images/room_night.png");
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    background-repeat: no-repeat;
-  }
-`;
 
 const dDayCount = (birthDay: Date) => {
   const now = new Date();
@@ -63,7 +52,6 @@ const Cake: NextPage = () => {
         <DdayCounter isBeforeBirthday={dateInfo.isBeforeBirthday} dateDiff={dateInfo.dateDiff} />
         <Sidebar />
       </Header>
-      <GlobalStyle />
       <AnimatedImg />
       <main>
         <div>
@@ -90,4 +78,4 @@ const Header = styled.header`
   z-index: 10;
 `;
 
-export default Cake;
+export default withCakeBackgroundStyle(Cake);

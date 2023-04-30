@@ -42,3 +42,5 @@ tsconfig.tsbuildinfo
 public/.DS_Store
 .eslintcache
 .env
+
+.idea
