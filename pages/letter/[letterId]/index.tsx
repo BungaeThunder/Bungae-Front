@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import { useEffect, useState } from 'react';
-import { withCakeBackgroundStyle } from '../../../component';
+import styled from 'styled-components';
 
 const ReadLetter: NextPage = () => {
   const [isSSR, setIsSSR] = useState<boolean>(true);
@@ -11,7 +11,10 @@ const ReadLetter: NextPage = () => {
 
   return !isSSR ? (
     <div>
-      {/*<GlobalStyle />*/}
+      <Header>
+        <text>11</text>
+        <text>22</text>
+      </Header>
       <main>
         <text>111</text>
       </main>
@@ -24,4 +27,11 @@ const ReadLetter: NextPage = () => {
   );
 };
 
-export default withCakeBackgroundStyle(ReadLetter);
+const Header = styled.header`
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 20px 10px 20px;
+  z-index: 10;
+`;
+
+export default ReadLetter;
