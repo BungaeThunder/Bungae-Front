@@ -7,22 +7,25 @@ type WelcomeTitleProps = {
   dDayCount: number;
 };
 export const WelcomeTitle: React.FC<WelcomeTitleProps> = ({ userName, isBirthDay, dDayCount }) => {
-  const welcomeMessage = isBirthDay ? 'Happy Birthday!' : 'Happy Unbirthday!';
-  let message: string;
-  if (dDayCount < 0) {
-    message = `🧁 당신의 생일까지 d-${-dDayCount}`;
-  } else if (dDayCount === 0) {
-    message = `🧁 D-day 생일을 축하합니다!`;
-  } else {
-    message = `🧁 초에 불이 꺼진지 ${dDayCount}일 째`;
-  }
+  const createBirthdayMessage = (dDayCount: number): string => {
+    let message: string;
+    if (dDayCount < 0) {
+      message = `🧁 당신의 생일까지 D-${-dDayCount}일`;
+    } else if (dDayCount === 0) {
+      message = `🧁 D-day 생일을 축하합니다!`;
+    } else {
+      message = `🧁 생일이 ${dDayCount}일 남았습니다.`;
+    }
+    return message;
+  };
+
   return (
     <Container>
       <Main>
-        <WelcomeMessage>{welcomeMessage}</WelcomeMessage>
+        <WelcomeMessage>{isBirthDay ? 'Happy Birthday!' : 'Happy Unbirthday!'}</WelcomeMessage>
         <UserName>{userName}님❤️</UserName>
       </Main>
-      <Sub>{message}</Sub>
+      <Sub>{createBirthdayMessage(dDayCount)}</Sub>
     </Container>
   );
 };
