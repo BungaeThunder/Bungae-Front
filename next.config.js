@@ -9,6 +9,12 @@ const nextConfig = {
     });
     return config;
   },
+  rewrites: () => [
+    {
+      source: '/naver-openapi/:path*',
+      destination: 'https://openapi.naver.com/:path*',
+    },
+  ],
 };
 
 module.exports = nextConfig;

@@ -2,9 +2,20 @@ import { observer } from 'mobx-react';
 import Script from 'next/script';
 import LoginWithNaverIcon from 'public/images/auth/login_with_naver_account.svg';
 import { useRef } from 'react';
-import UserStore from 'store/UserStore';
 import styled from 'styled-components';
 import StyledLoginButton from './StyledLoginButton';
+
+export const getNaverProfile = async (accessToken: string) => {
+  console.log(`Bearer ${accessToken}`);
+  const response = await (
+    await fetch('/naver-openapi/v1/nid/me', {
+      method: 'GET',
+      headers: { Authorization: `Bearer ${accessToken}` },
+    })
+  ).json();
+
+  return response.response;
+};
 
 const LoginWithNaver = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -12,15 +23,13 @@ const LoginWithNaver = () => {
   const initLogin = () => {
     const login = new window.naver.LoginWithNaverId({
       clientId: process.env.NEXT_PUBLIC_NAVER_CLIENT_ID,
-      callbackUrl: `${process.env.NEXT_PUBLIC_SERVER_URL}/cake`,
+      callbackUrl: `${process.env.NEXT_PUBLIC_SERVER_URL}/cake?naver_login=true`,
       callbackHandle: true,
       isPopup: false,
       loginButton: { color: 'white', type: 3, height: 50 },
     });
 
     login.init();
-
-    UserStore.setId('naverId');
   };
 
   return (

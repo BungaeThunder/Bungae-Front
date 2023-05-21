@@ -9,6 +9,7 @@ import { DdayCounter } from 'component/cake/DdayCounter';
 import { AnimatedImg } from 'component/cake/AnimatedImg';
 import UserStore from 'store/UserStore';
 import { observer } from 'mobx-react';
+import { getNaverProfile } from 'component/auth/LoginWithNaver';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -54,8 +55,24 @@ const Cake: NextPage = () => {
     setIsModalOpen(false);
   };
 
+  const handleNaverLogin = async () => {
+    if (
+      window.location.href.includes('naver_login') &&
+      window.location.href.includes('access_token')
+    ) {
+      const accessToken = window.location.href.split('=')[2].split('&')[0];
+      const naverProfile = await getNaverProfile(accessToken);
+      const { id, name, birthday } = naverProfile;
+
+      UserStore.setId(id);
+      UserStore.setName(name);
+      UserStore.setBirthday(birthday);
+    }
+  };
+
   useEffect(() => {
     setIsSSR(false);
+    handleNaverLogin();
   }, []);
 
   console.log('isModalOpen : ', isModalOpen);
