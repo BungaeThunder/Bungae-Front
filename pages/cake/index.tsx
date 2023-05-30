@@ -15,6 +15,9 @@ const Cake: NextPage = () => {
     setIsSSR(false);
   }, []);
 
+  console.log('@cake: isMenuOpen: ' + isMenuOpen);
+  console.log('@cake: userName: ' + userName);
+
   return !isSSR ? (
     <div>
       <BackgroundContainer>
@@ -25,7 +28,7 @@ const Cake: NextPage = () => {
         ></WelcomeTitle>
         <MenuButton open={isMenuOpen} setOpen={setIsMenuOpen} />
       </BackgroundContainer>
-      <Menu open={isMenuOpen} />
+      <Menu open={isMenuOpen} userName={userName} />
     </div>
   ) : (
     // TODO: add loading page
