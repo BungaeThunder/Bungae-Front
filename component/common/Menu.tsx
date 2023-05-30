@@ -32,7 +32,7 @@ export const Menu: React.FC<MenuProps> = ({ open, userName }) => {
 };
 
 const MenuContainer = styled.div`
-  color: white;
+  color: black;
   background: #334458;
   top: 0%;
   position: absolute;

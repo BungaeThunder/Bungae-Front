@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const ReceivedLetters = () => {
   return (
     <ReceivedLetterContainer>
-      <h2>내가 받은 답장들</h2>
+      <h3>내가 받은 답장들</h3>
     </ReceivedLetterContainer>
   );
 };
