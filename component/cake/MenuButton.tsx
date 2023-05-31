@@ -30,6 +30,7 @@ const StyledBurger = styled.button<{ open: boolean }>`
   cursor: pointer;
   padding: 0;
   z-index: 10;
+  overflow-x: hidden;
 
   span {
     width: 100%;

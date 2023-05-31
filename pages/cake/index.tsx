@@ -3,13 +3,15 @@ import { useEffect, useState } from 'react';
 import BackgroundContainer from 'component/cake/BackgroundContainer';
 import MenuButton from 'component/cake/MenuButton';
 import WelcomeTitle from 'component/cake/WelcomeTitle';
-import MainButton from 'component/cake/MainButton';
+import ReadButton from 'component/cake/ReadButton';
+import WriteButton from 'component/cake/WriteButton';
 
 const Cake: NextPage = () => {
   const [isSSR, setIsSSR] = useState<boolean>(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const userName = '예은';
   const dDayCount = 0;
+  const isOwner = false;
 
   useEffect(() => {
     setIsSSR(false);
@@ -23,7 +25,11 @@ const Cake: NextPage = () => {
         dDayCount={dDayCount}
       ></WelcomeTitle>
       <MenuButton open={isMenuOpen} setOpen={setIsMenuOpen} />
-      <MainButton isOwner={true} isBeforBirthday={false} isLetterWritten={false}></MainButton>
+      {isOwner ? (
+        <ReadButton isBeforBirthday={false}></ReadButton>
+      ) : (
+        <WriteButton isBeforBirthday={false} isLetterWritten={true}></WriteButton>
+      )}
     </BackgroundContainer>
   ) : (
     // TODO: add loading page
