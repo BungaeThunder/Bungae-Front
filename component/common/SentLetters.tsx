@@ -1,18 +1,28 @@
 import React from 'react';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
+import { Box, Container, ListItem, ListItemButton, ListItemText, IconButton } from '@mui/material';
 import { FixedSizeList, ListChildComponentProps } from 'react-window';
+import CommentIcon from '@mui/icons-material/Comment';
 
 function renderRow(props: ListChildComponentProps) {
   const { index, style } = props;
 
   return (
-    <ListItem style={style} key={index} component="div" disablePadding>
+    <ListItem
+      style={style}
+      key={index}
+      component="div"
+      disablePadding
+      secondaryAction={
+        <IconButton aria-label="comment">
+          <CommentIcon />
+        </IconButton>
+      }
+    >
       <ListItemButton>
-        <ListItemText primary={`Item ${index + 1}`} sx={{ color: 'text.primary' }} />
+        <ListItemText
+          primary={`D-${index + 1} 김병수(2023.07.33)`}
+          sx={{ color: 'text.primary' }}
+        />
       </ListItemButton>
     </ListItem>
   );
@@ -20,10 +30,10 @@ function renderRow(props: ListChildComponentProps) {
 
 export const SentLetters = () => {
   return (
-    <Container fixed sx={{ padding: 0 }}>
+    <Container fixed sx={{ padding: 0, color: 'white' }}>
+      <h3>내가 보낸 편지들</h3>
       <Box sx={{ width: '100%', height: 140, bgcolor: '#cfe8fc' }}>
-        <h3>내가 보낸 편지들</h3>
-        <FixedSizeList height={100} fullWidth itemSize={20} itemCount={10} overscanCount={5}>
+        <FixedSizeList height={140} fullWidth itemSize={28} itemCount={10} overscanCount={5}>
           {renderRow}
         </FixedSizeList>
       </Box>

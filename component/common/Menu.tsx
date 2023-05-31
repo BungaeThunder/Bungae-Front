@@ -4,6 +4,7 @@ import { BasicInfo } from 'component/common/BasicInfo';
 import { LastCake } from 'component/common/LastCake';
 import { SentLetters } from 'component/common/SentLetters';
 import { ReceivedLetters } from 'component/common/ReceivedLetters';
+import { LogoutButton } from 'component/common/LogoutButton';
 
 type MenuProps = {
   open: boolean;
@@ -27,16 +28,15 @@ export const Menu: React.FC<MenuProps> = ({ open, userName }) => {
       <LastCake />
       <SentLetters />
       <ReceivedLetters />
+      <LogoutButton />
     </MenuContainer>
   );
 };
 
 const MenuContainer = styled.div`
-  color: black;
   background: #334458;
   top: 0%;
   position: absolute;
-  // display: flex;
   z-index: 888;
   width: 100%;
   height: 100%;

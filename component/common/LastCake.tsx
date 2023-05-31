@@ -1,11 +1,5 @@
 import React from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { Box, Container, InputLabel, MenuItem, FormControl, Select } from '@mui/material';
 
 export const LastCake = () => {
   const [age, setAge] = React.useState('');
@@ -15,11 +9,10 @@ export const LastCake = () => {
 
   return (
     <React.Fragment>
-      <CssBaseline />
       <Container fixed sx={{ padding: 0 }}>
-        <Box sx={{ bgcolor: '#cfe8fc' }}>
+        <Box sx={{ bgcolor: 'transparent', color: 'white' }}>
           <h3>지난 케익 방문하기</h3>
-          <FormControl fullWidth>
+          <FormControl fullWidth sx={{ bgcolor: 'rgba(255,255,255,0.4)', color: 'white' }}>
             <InputLabel id="lastCakesLabel">Last Cakes</InputLabel>
             <Select
               labelId="lastCakesLabel"
