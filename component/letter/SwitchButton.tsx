@@ -1,78 +1,103 @@
-import React from 'react';
-import { Switch } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles({
-  root: {
-    width: '50px',
-    height: '24px',
-    padding: '0px',
-  },
-  switchBase: {
-    color: '#818181',
-    padding: '1px',
-    '&$checked': {
-      '& + $track': {
-        backgroundColor: '#23bf58',
-      },
-    },
-  },
-  thumb: {
-    color: 'white',
-    width: '20px',
-    height: '20px',
-    margin: '1px',
-  },
-  track: {
-    borderRadius: '20px',
-    backgroundColor: '#818181',
-    opacity: '1 !important',
-    '&:after, &:before': {
-      color: 'white',
-      fontSize: '11px',
-      position: 'absolute',
-      top: '6px',
-    },
-    '&:after': {
-      content: "'On'",
-      left: '8px',
-    },
-    '&:before': {
-      content: "'Off'",
-      right: '7px',
-    },
-  },
-  checked: {
-    color: '#23bf58 !important',
-    transform: 'translateX(26px) !important',
-  },
-});
+import React from "react";
+import styled from "styled-components";
 
 export const SwitchButton = () => {
-  const classes = useStyles();
-  const [state, setState] = React.useState({
-    checkedA: true,
-  });
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-  };
-
-  return (
-    <div>
-      <Switch
-        classes={{
-          root: classes.root,
-          switchBase: classes.switchBase,
-          thumb: classes.thumb,
-          track: classes.track,
-          checked: classes.checked,
-        }}
-        checked={state.checkedA}
-        onChange={handleChange}
-        name="checkedA"
-        inputProps={{ 'aria-label': 'secondary checkbox' }}
-      />
-    </div>
-  );
+  return <SwitchButtonDiv><span className="switcher switcher-1">
+                <input type="checkbox" id="switcher-1"/>
+                <label htmlFor="switcher-1"></label>
+  </span></SwitchButtonDiv>
 };
+
+const SwitchButtonDiv = styled.div`
+  display: flex;
+  span.switcher {
+    position: relative;
+
+    width:200px;
+    height:50px;
+    border-radius:25px;
+    margin:20px 0;
+    input {
+      appearance: none;
+
+      position: relative;
+
+      width:200px;
+      height:50px;
+      border-radius:25px;
+      // background-color:$black_2;
+      outline:2px solid white;
+
+      font-family: 'Oswald', sans-serif;
+      &:before, &:after {
+        z-index:2;
+
+        position: absolute;
+        top:50%;
+        transform:translateY(-50%);
+
+        color:white;
+      }
+      &:before {
+        content: '즐겨찾기';
+        left:26px;
+      }
+      &:after {
+        content: '전체보기';
+        right:26px;
+      }
+    }
+    label {
+      z-index:1;
+      position: absolute;
+      top:7px;
+      bottom:5px;
+      height: 40px;
+      border-radius:20px;
+    }
+    &.switcher-1 {
+      input {
+        transition:.25s -.1s;
+        &:checked {
+          // background-color:$black_2;
+          &:before {
+            color:black;
+            transition: color .5s .2s;
+          }
+          &:after {
+            color:black;
+            transition: color .5s;
+          }
+          &+label {
+            left:10px;
+            right:100px;
+
+            background:white;
+
+            transition: left .5s, right .4s .2s;
+          }
+        }
+        &:not(:checked) {
+          // background:$black_2;
+          transition: background .5s -.1s;
+          &:before {
+            color:black;
+            transition: color .5s;
+          }
+          &:after {
+            color:black;
+            transition: color .5s .2s;
+          }
+          &+label {
+            left:106px;
+            right:6px;
+
+            background:white;
+
+            transition: left .4s .2s, right .5s, background .35s -.1s;
+          }
+        }
+      }
+    }
+  }
+`;
