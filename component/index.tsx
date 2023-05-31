@@ -1,2 +1,2 @@
 export * from './cake';
-export * from './letter'
+export * from './letter';
