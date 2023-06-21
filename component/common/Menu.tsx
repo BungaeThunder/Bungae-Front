@@ -1,10 +1,20 @@
 import { useEffect, useState } from 'react';
-import styled from 'styled-components';
+import { Container } from '@mui/material';
 import { BasicInfo } from 'component/common/BasicInfo';
 import { LastCake } from 'component/common/LastCake';
 import { SentLetters } from 'component/common/SentLetters';
 import { ReceivedLetters } from 'component/common/ReceivedLetters';
 import { LogoutButton } from 'component/common/LogoutButton';
+
+const containerStyle = {
+  bgcolor: '#334458',
+  width: '100%',
+  height: '100%',
+  position: 'absolute',
+  zIndex: '888',
+  top: '0%',
+  padding: '5%',
+};
 
 type MenuProps = {
   open: boolean;
@@ -17,28 +27,15 @@ export const Menu: React.FC<MenuProps> = ({ open, userName }) => {
     setIsMenuOpen(open);
   });
 
-  console.log('@menu: isMenuOpen: ' + isMenuOpen);
-  console.log('@menu: userName: ' + userName);
-
-  return !isMenuOpen ? (
-    <div> </div>
-  ) : (
-    <MenuContainer>
+  return isMenuOpen ? (
+    <Container sx={containerStyle}>
       <BasicInfo userName={userName} />
       <LastCake />
       <SentLetters />
       <ReceivedLetters />
       <LogoutButton />
-    </MenuContainer>
+    </Container>
+  ) : (
+    <div></div>
   );
 };
-
-const MenuContainer = styled.div`
-  background: #334458;
-  top: 0%;
-  position: absolute;
-  z-index: 888;
-  width: 100%;
-  height: 100%;
-  padding: 5%;
-`;

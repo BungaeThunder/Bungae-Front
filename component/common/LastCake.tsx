@@ -1,18 +1,21 @@
-import React from 'react';
+import { useState, Fragment } from 'react';
 import { Box, Container, InputLabel, MenuItem, FormControl, Select } from '@mui/material';
 
+const boxStyle = { bgcolor: 'transparent', color: 'white' };
+const formControlStyle = { bgcolor: 'rgba(255,255,255,0.4)', color: 'white' };
+
 export const LastCake = () => {
-  const [age, setAge] = React.useState('');
+  const [age, setAge] = useState<string>();
   const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value as string);
+    setAge(event.target.value);
   };
 
   return (
-    <React.Fragment>
+    <Fragment>
       <Container fixed sx={{ padding: 0 }}>
-        <Box sx={{ bgcolor: 'transparent', color: 'white' }}>
+        <Box sx={boxStyle}>
           <h3>지난 케익 방문하기</h3>
-          <FormControl fullWidth sx={{ bgcolor: 'rgba(255,255,255,0.4)', color: 'white' }}>
+          <FormControl fullWidth sx={formControlStyle}>
             <InputLabel id="lastCakesLabel">Last Cakes</InputLabel>
             <Select
               labelId="lastCakesLabel"
@@ -28,6 +31,6 @@ export const LastCake = () => {
           </FormControl>
         </Box>
       </Container>
-    </React.Fragment>
+    </Fragment>
   );
 };

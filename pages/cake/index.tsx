@@ -15,9 +15,6 @@ const Cake: NextPage = () => {
     setIsSSR(false);
   }, []);
 
-  console.log('@cake: isMenuOpen: ' + isMenuOpen);
-  console.log('@cake: userName: ' + userName);
-
   return !isSSR ? (
     <div>
       <BackgroundContainer>
