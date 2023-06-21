@@ -1,26 +1,15 @@
 import React from 'react';
 import { Box, Button, ButtonGroup, TextField, Typography } from '@mui/material';
 
-interface LetterProps {
+type LetterProps = {
   isOpen: boolean;
   message: string;
   close: () => void;
-}
+};
 
 export const Letter = ({ isOpen, message, close }: LetterProps) => {
   return (
-    <Box
-      sx={{
-        width: '65%',
-        height: '100%',
-        backgroundColor: 'beige',
-        borderRadius: '10px',
-        border: '1px solid white',
-        marginRight: 'auto',
-        marginLeft: 'auto',
-        p: 1,
-      }}
-    >
+    <Box sx={letterStyle}>
       {isOpen ? (
         <>
           <TextField fullWidth multiline rows={20} label="fullWidth" id="fullWidth" />
@@ -34,6 +23,17 @@ export const Letter = ({ isOpen, message, close }: LetterProps) => {
       )}
     </Box>
   );
+};
+
+const letterStyle = {
+  width: '65%',
+  height: '100%',
+  backgroundColor: 'beige',
+  borderRadius: '10px',
+  border: '1px solid white',
+  marginRight: 'auto',
+  marginLeft: 'auto',
+  p: 1,
 };
 
 export default Letter;

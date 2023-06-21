@@ -11,6 +11,8 @@ const theme = {
   },
   files: {
     backgroundImage: '/images/room_night.png',
+    backgroundRoom: '/images/room.png',
+    backgroundFloor: '/images/floor.png',
   },
 };
 

@@ -7,24 +7,16 @@ import Letter from './Letter';
 
 //TODO: 상태에 따라 action과 css 와 활성화 여부가 달라지는 버튼
 type WriteButtonProps = {
-  isBeforBirthday: boolean;
   isLetterWritten: boolean;
 };
 
 export const WriteButton: React.FC<WriteButtonProps> = ({ isLetterWritten }) => {
-  let message: string;
   const [isHovered, setIsHovered] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleClick = () => {
+  const handleLetterClick = () => {
     setIsOpen(!isOpen);
   };
-
-  if (isLetterWritten) {
-    message = `내가 쓴 편지 보기`;
-  } else {
-    message = `편지 쓰기`;
-  }
 
   return (
     <>
@@ -35,12 +27,11 @@ export const WriteButton: React.FC<WriteButtonProps> = ({ isLetterWritten }) => 
           width: '100%',
           height: '20%',
           overflowY: 'hidden',
-          // border: '1px solid red',
         }}
         disableRipple
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        onClick={handleClick}
+        onClick={handleLetterClick}
       >
         <Box sx={{ position: 'absolute', width: '80%', top: '-70%' }}>
           <Image
@@ -69,19 +60,14 @@ export const WriteButton: React.FC<WriteButtonProps> = ({ isLetterWritten }) => 
           zIndex: isOpen ? 200 : 10,
         }}
       >
-        <Letter isOpen={isOpen} message={message} close={handleClick} />
+        <Letter
+          isOpen={isOpen}
+          message={isLetterWritten ? `내가 쓴 편지 보기` : `편지 쓰기`}
+          close={handleLetterClick}
+        />
       </Box>
     </>
   );
-
-  // return (
-  //   <Container>
-  //     <Label>
-  //       {icon}
-  //       <p>{message}</p>
-  //     </Label>
-  //   </Container>
-  // );
 };
 
 export default WriteButton;
