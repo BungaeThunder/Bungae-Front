@@ -21,20 +21,20 @@ const ReadLetter: NextPage = () => {
   };
 
   return !isSSR ? (
-      <div>
-        <p>loading...</p>
-      </div>
+    <div>
+      <p>loading...</p>
+    </div>
   ) : (
     <BackgroundContainer>
       <div>
         <Header>
           <div>
             <Image
-                src={'/icons/backTriangle.svg'}
-                alt="button"
-                width={22}
-                height={16}
-                onClick={gotoBack}
+              src={'/icons/backTriangle.svg'}
+              alt="button"
+              width={22}
+              height={16}
+              onClick={gotoBack}
             />
             <Image src={'/icons/lucideCake.svg'} width={28} height={26} />
           </div>
