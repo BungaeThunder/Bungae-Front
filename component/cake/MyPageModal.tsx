@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Line from 'public/images/line_1.svg';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import DatePicker from 'react-datepicker';
-import Letter from 'public/images/letter.svg';
+import Letter from 'public/images/letter_background.svg';
 import Image from 'next/image';
 
 import 'react-datepicker/dist/react-datepicker.css';
