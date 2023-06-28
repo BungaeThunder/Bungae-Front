@@ -16,26 +16,30 @@ const ReadLetter: NextPage = () => {
     console.log('gotoback');
   };
 
-  const offSounde = () => {
+  const offSound = () => {
     console.log('off sound');
   };
 
   return !isSSR ? (
+      <div>
+        <p>loading...</p>
+      </div>
+  ) : (
     <BackgroundContainer>
       <div>
         <Header>
           <div>
             <Image
-              src={'/icons/backTriangle.svg'}
-              alt="button"
-              width={22}
-              height={16}
-              onClick={gotoBack}
+                src={'/icons/backTriangle.svg'}
+                alt="button"
+                width={22}
+                height={16}
+                onClick={gotoBack}
             />
             <Image src={'/icons/lucideCake.svg'} width={28} height={26} />
           </div>
           <SwitchButton />
-          <Image src={'/icons/sound.svg'} alt="button" width={28} height={26} onClick={offSounde} />
+          <Image src={'/icons/sound.svg'} alt="button" width={28} height={26} onClick={offSound} />
         </Header>
         <LetterMain>
           <Letter>
@@ -50,11 +54,6 @@ const ReadLetter: NextPage = () => {
         </LetterMain>
       </div>
     </BackgroundContainer>
-  ) : (
-    // TODO: add loading page
-    <div>
-      <p>loading...</p>
-    </div>
   );
 };
 
