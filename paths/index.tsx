@@ -6,6 +6,9 @@ const PathEnum = {
   CAKE: {
     pathname: '/cake',
   },
+  ACCOUNT: {
+    pathname: '/account',
+  },
   // SEARCH_COURSE_DETAIL: (courseId: string) => {
   //   return {
   //     pathname: `/search/[courseId]/overview`,
