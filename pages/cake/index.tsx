@@ -5,6 +5,7 @@ import MenuButton from 'component/cake/MenuButton';
 import WelcomeTitle from 'component/cake/WelcomeTitle';
 import ReadButton from 'component/cake/ReadButton';
 import WriteButton from 'component/cake/WriteButton';
+import { Menu } from 'component/common/Menu';
 
 const Cake: NextPage = () => {
   const [isSSR, setIsSSR] = useState<boolean>(true);
@@ -18,19 +19,22 @@ const Cake: NextPage = () => {
   }, []);
 
   return !isSSR ? (
-    <BackgroundContainer>
-      <WelcomeTitle
-        isBirthDay={Boolean(dDayCount == 0)}
-        userName={userName}
-        dDayCount={dDayCount}
-      ></WelcomeTitle>
-      <MenuButton open={isMenuOpen} setOpen={setIsMenuOpen} />
-      {isOwner ? (
-        <ReadButton isBeforBirthday={false}></ReadButton>
-      ) : (
-        <WriteButton isBeforBirthday={false} isLetterWritten={true}></WriteButton>
-      )}
-    </BackgroundContainer>
+    <div>
+      <BackgroundContainer>
+        <WelcomeTitle
+          isBirthDay={Boolean(dDayCount == 0)}
+          userName={userName}
+          dDayCount={dDayCount}
+        ></WelcomeTitle>
+        <MenuButton open={isMenuOpen} setOpen={setIsMenuOpen} />
+        {isOwner ? (
+          <ReadButton isBeforeBirthday={false}></ReadButton>
+        ) : (
+          <WriteButton isLetterWritten={true}></WriteButton>
+        )}
+      </BackgroundContainer>
+      <Menu open={isMenuOpen} userName={userName} />
+    </div>
   ) : (
     // TODO: add loading page
     <div>

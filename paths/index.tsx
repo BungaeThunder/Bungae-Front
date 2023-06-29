@@ -1,10 +1,13 @@
 const PathEnum = {
-  API_URL: 'http://13.125.213.173:8080',
+  API_URL: 'http://localhost:8080',
   SIGN_IN: {
     pathname: '/auth',
   },
   CAKE: {
     pathname: '/cake',
+  },
+  ACCOUNT: {
+    pathname: '/account',
   },
   // SEARCH_COURSE_DETAIL: (courseId: string) => {
   //   return {
