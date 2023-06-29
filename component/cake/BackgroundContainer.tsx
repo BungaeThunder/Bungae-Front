@@ -12,10 +12,8 @@ const Background: React.FC<Props> = ({ children }) => {
 
 const BackgroundContainer = styled.div`
   height: 100vh;
-  background-image: url(${props => props.theme.files.backgroundImage});
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  background-image: url(${props => props.theme.files.backgroundRoom});
+  background-repeat: repeat-x;
 `;
 
 export default Background;

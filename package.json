@@ -19,6 +19,7 @@
     "@mui/material": "5.13.3",
     "@mui/styled-engine-sc": "5.12.0",
     "@material-ui/core": "^4.12.4",
+    "@heroicons/react": "2.0.17",
     "next": "12.1.6",
     "axios": "1.4.0",
     "react": "18.1.0",
