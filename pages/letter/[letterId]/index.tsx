@@ -20,7 +20,7 @@ const ReadLetter: NextPage = () => {
     console.log('off sound');
   };
 
-  return !isSSR ? (
+  return isSSR ? (
     <div>
       <p>loading...</p>
     </div>
