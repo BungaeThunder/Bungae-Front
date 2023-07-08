@@ -1,8 +1,8 @@
 import type { NextPage } from 'next';
-import { dispatch, useDispatch, useSelector } from 'store';
+import { dispatch, useSelector } from 'store';
 import { getUserState } from 'store/reducers/user';
 import { Button, TextField } from '@mui/material';
-import { useEffect } from 'react';
+import { AnyAction } from '@reduxjs/toolkit';
 
 export type User = {
   email: string;
@@ -10,12 +10,12 @@ export type User = {
   birthday: Date;
 };
 
-const API_TEST: NextPage = () => {
+const STORE: NextPage = () => {
   const { userName } = useSelector(state => state.user);
-  const dispatch = useDispatch;
 
   const handleUpdateButtonClick = () => {
-    // dispatch(getUserState());
+    //TODO: 사활을 걸고 해결!
+    dispatch(getUserState(1) as unknown as AnyAction);
   };
 
   return (
@@ -26,4 +26,4 @@ const API_TEST: NextPage = () => {
   );
 };
 
-export default API_TEST;
+export default STORE;
