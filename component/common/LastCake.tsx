@@ -1,5 +1,5 @@
 import { useState, Fragment } from 'react';
-import { Box, Container, InputLabel, MenuItem, FormControl, Select } from '@mui/material';
+import {Box, Container, InputLabel, MenuItem, FormControl, Select, SelectChangeEvent} from '@mui/material';
 
 const boxStyle = { bgcolor: 'transparent', color: 'white' };
 const formControlStyle = { bgcolor: 'rgba(255,255,255,0.4)', color: 'white' };
