@@ -33,7 +33,7 @@ export const ReceivedLetters = () => {
     <Container fixed sx={{ padding: 0, color: 'white' }}>
       <h3>내가 받은 답장들</h3>
       <Box sx={boxStyle}>
-        <FixedSizeList height={140} fullWidth itemSize={28} itemCount={10} overscanCount={5}>
+        <FixedSizeList height={140} width={"100%"} itemSize={28} itemCount={10} overscanCount={5}>
           {renderRow}
         </FixedSizeList>
       </Box>
