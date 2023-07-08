@@ -1,8 +1,6 @@
 import type { NextPage } from 'next';
 import { useEffect, useState } from 'react';
 import Api from 'lib/utils';
-import { dispatch, useSelector } from 'store';
-import { setUser } from 'store/reducers/user';
 
 export type User = {
   email: string;
@@ -12,11 +10,8 @@ export type User = {
 
 const API_TEST: NextPage = () => {
   const [users, setUsers] = useState<User[]>([]);
-  const { userName } = useSelector(state => state.user);
 
   useEffect(() => {
-    dispatch(setUser('Tim'));
-
     Api.get('users')
       .then(response => {
         setUsers(response.data);
@@ -37,7 +32,6 @@ const API_TEST: NextPage = () => {
           </p>
         ))}
       </div>
-      <div>{userName}</div>
     </div>
   );
 };
