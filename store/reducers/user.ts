@@ -1,7 +1,7 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { AxiosResponse } from 'axios';
-import Api from 'lib/utils';
-// import Api from 'lib/utils';
+import { ActionType, createReducer } from 'typesafe-actions';
+import * as userActions from '../actions/user';
+
+type UserAction = ActionType<typeof userActions>;
 
 type userState = {
   userName: string;
@@ -17,40 +17,19 @@ const initialState: userState = {
   loading: false,
 };
 
-type UserInfoResponse = {
-  name: string;
-};
-
-const userApi = {
-  userInfo: (userId: number) => Api.get(`/users/${userId}`),
-};
-
-export const getUserState = createAsyncThunk('cakey/user/getUserState', async (userId: number) => {
-  const response: AxiosResponse<UserInfoResponse> = await userApi.userInfo(userId);
-  return response.data;
-});
-
-const userStore = createSlice({
-  name: 'user',
-  initialState,
-  reducers: {
-    setUserName(state, action) {
-      state.userName = action.payload;
-    },
+const userStore = createReducer<userState, UserAction>(initialState, {
+  [userActions.SET_USER_LOADING]: (state, action) => {
+    return {
+      ...state,
+      loading: action.payload,
+    };
   },
-
-  extraReducers(builder) {
-    builder
-      .addCase(getUserState.pending, state => {
-        state.loading = true;
-      })
-      .addCase(getUserState.fulfilled, (state, action) => {
-        state.userName = action.payload.name;
-      })
-      .addCase(getUserState.rejected, state => {
-        state.loading = true;
-      });
+  [userActions.GET_USER_NAME_SUCCESS]: (state, action) => {
+    return {
+      ...state,
+      userName: action.payload,
+    };
   },
 });
-export default userStore.reducer;
-export const { setUserName } = userStore.actions;
+
+export default userStore;

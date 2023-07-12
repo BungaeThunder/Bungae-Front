@@ -1,8 +1,7 @@
 import type { NextPage } from 'next';
 import { dispatch, useSelector } from 'store';
-import { getUserState } from 'store/reducers/user';
+import { getUserNameAction } from 'store/actions/user';
 import { Button, TextField } from '@mui/material';
-import { AnyAction } from '@reduxjs/toolkit';
 
 export type User = {
   email: string;
@@ -15,7 +14,7 @@ const STORE: NextPage = () => {
 
   const handleUpdateButtonClick = () => {
     //TODO: 사활을 걸고 해결!
-    dispatch(getUserState(1) as unknown as AnyAction);
+    dispatch(getUserNameAction.request());
   };
 
   return (
