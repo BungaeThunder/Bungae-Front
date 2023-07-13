@@ -6,18 +6,18 @@ import {
 } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
 import { createLogger } from 'redux-logger';
-import rootReducer from './reducers';
-import userSaga from './sagas/user';
+import userStore from './userStore';
+import userSaga from './userSaga';
 
 const sagaMiddleware = createSagaMiddleware();
 const logger = createLogger();
 
 const store = configureStore({
-  reducer: rootReducer,
+  reducer: userStore,
   middleware: [sagaMiddleware, logger],
 });
 sagaMiddleware.run(userSaga);
-export type RootState = ReturnType<typeof rootReducer>;
+export type RootState = ReturnType<typeof userStore>;
 export type AppDispatch = typeof store.dispatch;
 const { dispatch } = store;
 

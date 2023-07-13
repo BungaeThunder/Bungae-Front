@@ -1,25 +1,18 @@
 import type { NextPage } from 'next';
 import { dispatch, useSelector } from 'store';
-import { getUserNameAction } from 'store/actions/user';
+import { getUserNameAction } from 'store/userAction';
 import { Button, TextField } from '@mui/material';
 
-export type User = {
-  email: string;
-  name: string;
-  birthday: Date;
-};
-
 const STORE: NextPage = () => {
-  const { userName } = useSelector(state => state.user);
+  const { name } = useSelector(state => state);
 
   const handleUpdateButtonClick = () => {
-    //TODO: 사활을 걸고 해결!
-    dispatch(getUserNameAction.request());
+    dispatch(getUserNameAction.request(1));
   };
 
   return (
     <>
-      <TextField value={userName} />
+      <TextField value={name} />
       <Button onClick={handleUpdateButtonClick}>update</Button>
     </>
   );
