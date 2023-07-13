@@ -5,7 +5,7 @@ import { Button, TextField } from '@mui/material';
 
 const STORE: NextPage = () => {
   const dispatch = useDispatch();
-  const { name } = useSelector(state => state);
+  const { name } = useSelector(state => state.user);
 
   const handleUpdateButtonClick = () => {
     dispatch(getUserNameAction.request(1));

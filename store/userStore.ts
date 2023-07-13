@@ -23,7 +23,7 @@ type cake = {
   receivedLetters: receivedLetter[];
 };
 
-type userState = {
+type UserState = {
   id: number;
   name: string;
   birthday: string;
@@ -34,7 +34,7 @@ type userState = {
 };
 
 //TODO: 초기값 설정 고민 필요
-const initialState: userState = {
+const initialState: UserState = {
   id: 0,
   name: 'TEST',
   birthday: '',
@@ -44,7 +44,7 @@ const initialState: userState = {
   loading: false,
 };
 
-const userStore = createReducer<userState, UserAction>(initialState, {
+const userStore = createReducer<UserState, UserAction>(initialState, {
   [userActions.SET_USER_LOADING]: (state, action) => {
     return {
       ...state,
@@ -52,12 +52,14 @@ const userStore = createReducer<userState, UserAction>(initialState, {
     };
   },
   [userActions.GET_USER_NAME_SUCCESS]: (state, action) => {
+    const { name, birthday } = action.payload;
     return {
       ...state,
-      name: action.payload.name,
+      name,
+      birthday,
     };
   },
-  [userActions.GET_USER_NAME_ERROR]: (state, action) => {
+  [userActions.GET_USER_NAME_FAILURE]: (state, action) => {
     return {
       ...state,
       error: action.payload,

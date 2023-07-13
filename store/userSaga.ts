@@ -4,13 +4,15 @@ import { all, call, fork, put, takeLatest } from 'redux-saga/effects';
 import { getUserNameAction, setUserLoading } from 'store/userAction';
 
 const userApi = {
-  user: (id: string) => Api.get(`/users/${id}`),
+  getUser: (id: string) => Api.get(`/users/${id}`),
 };
 
 interface Action {
   type: string;
   payload: unknown;
 }
+
+//TODO: userApi 말고 다른거 쓰는 경우 고려
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const createSaga = (userAction: any, apiName: string, loading = false) => {
@@ -30,7 +32,7 @@ export const createSaga = (userAction: any, apiName: string, loading = false) =>
 };
 
 function* watchSetUserState() {
-  yield takeLatest(getUserNameAction.request, createSaga(getUserNameAction, 'user', true));
+  yield takeLatest(getUserNameAction.request, createSaga(getUserNameAction, 'getUser', true));
 }
 
 export default function* userSaga() {
