@@ -1,7 +1,7 @@
 import { createAction, createAsyncAction } from 'typesafe-actions';
 import { AxiosError } from 'axios';
 
-type UserResponse = {
+export type UserResponse = {
   birthday: string;
   email: string;
   name: string;
