@@ -3,7 +3,7 @@ import * as userActions from './userAction';
 
 export type UserAction = ActionType<typeof userActions>;
 
-type receivedLetter = {
+type ReceivedLetter = {
   senderId: number;
   text: string;
   voiceUrl: string;
@@ -11,25 +11,25 @@ type receivedLetter = {
   isRead: boolean;
 };
 
-type writeLetter = {
+type WriteLetter = {
   receiverId: number;
   text: string;
   voiceUrl: string;
 };
 
-type cake = {
+type Cake = {
   id: number;
   birthday: string;
-  receivedLetters: receivedLetter[];
+  receivedLetters: ReceivedLetter[];
 };
 
 type UserState = {
   id: number;
   name: string;
   birthday: string;
-  cakes: cake[]; // api 응답에서 최신순 정렬 보장해줘야 함
+  cakes: Cake[]; // api 응답에서 최신순 정렬 보장해줘야 함
   currentCakeId: number;
-  writeLetters: writeLetter[];
+  writeLetters: WriteLetter[];
   loading: boolean;
 };
 

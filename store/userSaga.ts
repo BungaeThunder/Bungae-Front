@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios';
 import Api from 'lib/utils';
 import { all, fork, takeLatest } from 'redux-saga/effects';
-import { UserResponse, getUserNameAction, setUserLoading } from 'store/userAction';
+import { UserResponse, getUserName, setUserLoading } from 'store/userAction';
 import { AsyncAction, createSaga } from './common';
 
 const userApi = {
@@ -17,7 +17,7 @@ export function createUserSaga(
 }
 
 function* watchSetUserState() {
-  yield takeLatest(getUserNameAction.request, createUserSaga(getUserNameAction, 'getUser', true));
+  yield takeLatest(getUserName.request, createUserSaga(getUserName, 'getUser', true));
 }
 
 export default function* userSaga() {
