@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import BackgroundContainer from 'component/cake/BackgroundContainer';
 import { SwitchButton } from 'component';
 import Image from 'next/image';
-import {useSelector} from "../../../store";
-import Api from "../../../lib/utils";
-import {useRouter} from "next/router";
+import { useSelector } from '../../../store';
+import Api from '../../../lib/utils';
+import { useRouter } from 'next/router';
 
 const ReadLetter: NextPage = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -14,20 +14,20 @@ const ReadLetter: NextPage = () => {
   const { letterId } = router.query;
   const { name } = useSelector(state => state.user);
   // TODO: 해당 타입을 어디에 모을지?
-  const [letters, setLetters] = useState()
+  const [letters, setLetters] = useState();
 
   useEffect(() => {
-    if(letterId) {
+    if (letterId) {
       Api.get(`letters/${letterId}`)
-          .then(response => {
-            setLetters(response.data);
-            setIsLoading(false);
-            console.log('letters : ', response.data);
-          })
-          .catch(error => {
-            console.error(error);
-            setIsLoading(false)
-          });
+        .then(response => {
+          setLetters(response.data);
+          setIsLoading(false);
+          console.log('letters : ', response.data);
+        })
+        .catch(error => {
+          console.error(error);
+          setIsLoading(false);
+        });
     }
   }, [letterId]);
 
