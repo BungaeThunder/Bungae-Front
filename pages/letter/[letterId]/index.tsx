@@ -15,7 +15,7 @@ type Letter = {
   audioUrl: string;
   cakeId: number;
   senderId: number;
-}
+};
 
 const ReadLetter: NextPage = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
