@@ -4,13 +4,40 @@ import styled from 'styled-components';
 import BackgroundContainer from 'component/cake/BackgroundContainer';
 import { SwitchButton } from 'component';
 import Image from 'next/image';
+import { useSelector } from '../../../store';
+import Api from '../../../lib/utils';
+import { useRouter } from 'next/router';
+
+type Letter = {
+  id: number;
+  contents: string;
+  reply: string;
+  audioUrl: string;
+  cakeId: number;
+  senderId: number;
+};
 
 const ReadLetter: NextPage = () => {
-  const [isSSR, setIsSSR] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const router = useRouter();
+  const { letterId } = router.query;
+  const { name } = useSelector(state => state.user);
+  // TODO: 해당 타입을 어디에 모을지?
+  const [letter, setLetters] = useState<Letter>();
 
   useEffect(() => {
-    setIsSSR(false);
-  }, []);
+    if (letterId) {
+      Api.get(`letters/${letterId}`)
+        .then(response => {
+          setLetters(response.data);
+          setIsLoading(false);
+        })
+        .catch(error => {
+          console.error(error);
+          setIsLoading(false);
+        });
+    }
+  }, [letterId]);
 
   const gotoBack = () => {
     console.log('gotoback');
@@ -20,7 +47,7 @@ const ReadLetter: NextPage = () => {
     console.log('off sound');
   };
 
-  return isSSR ? (
+  return isLoading || !letter ? (
     <div>
       <p>loading...</p>
     </div>
@@ -43,9 +70,9 @@ const ReadLetter: NextPage = () => {
         </Header>
         <LetterMain>
           <Letter>
-            <FromText>From 학죽</FromText>
-            <MainText>안녕 난 학준이야</MainText>
-            <ToText>To 학준</ToText>
+            <FromText>To {name}</FromText>
+            <MainText>{letter.contents}</MainText>
+            <ToText>From {letter.senderId}</ToText>
             <Bookmark></Bookmark>
           </Letter>
           <WritingPad>
